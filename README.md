@@ -3,4 +3,6 @@ Elias Chahine
 
 Emil Lindholm Brandt (Konstruktions och utvecklingsansvarig / Development)
 
+Johan Hanssen (Kund- & kravansvarig)
+
 Jonthan Matsson

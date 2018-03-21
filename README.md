@@ -3,3 +3,4 @@ Elias Chahine
 
 Emil Lindholm Brandt (Konstruktions och utvecklingsansvarig / Development)
 
+Jonthan Matsson

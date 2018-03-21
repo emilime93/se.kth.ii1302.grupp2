@@ -5,3 +5,5 @@ Emil Lindholm Brandt (Konstruktions och utvecklingsansvarig / Development)
 
 
 Johan Hanssen (Kund- & kravansvarig)
+
+Aldin Burdzovic (Projektledare)

@@ -1,6 +1,6 @@
 # DigiBoard
 ## Grupp 2s Projekt i kursen Projekt och projektmetoder
-Elias Chahine
+Elias Chahine (Arkitekt)
 
 Emil Lindholm Brandt (Konstruktions och utvecklingsansvarig / Development)
 

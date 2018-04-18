@@ -11,10 +11,10 @@
 	<div id="header">
 		<a href="index.html"><img class="logo" alt="logo" src="https://cdn.dribbble.com/users/77598/screenshots/2404454/oppa.jpg"/></a>
 		<div id="login">
-			<form action="" method="POST">
-					<input type="text" name="" placeholder="Username">
-					<input type="password" name="" placeholder="password">
-					<button type="submit" name="">Login</button>
+			<form action="controller/user.php" method="POST">
+					<input type="text" name="username" placeholder="Username">
+					<input type="password" name="password" placeholder="password">
+					<button type="submit" name="login_btn">Login</button>
 			</form>
 		</div>
 	</div>
@@ -37,13 +37,14 @@
 		</div>
 		<div class="section2">
 			<h1>Register</h1>
-			<form action="" method="POST">
+			<form action="controller/user.php" method="POST">
 				<input type="text" name="first" placeholder="Firstname">
 			    <input type="text" name="last" placeholder="Lastname">
-			    <input type="text" name="uid" placeholder="Username">
-			    <input type="text" name="email" placeholder="E-mail">
-			    <input type="password" name="pwd" placeholder="Password">
-			    <button type="submit" name="submit">Signup</button>
+			    <input type="text" name="username" placeholder="Username">
+			    <input type="text" name="signup_code" placeholder="Signup Code">
+			    <input type="email" name="email" placeholder="E-mail">
+			    <input type="password" name="password" placeholder="Password">
+			    <button type="submit" name="register_btn">Signup</button>
            	</form>
 		</div>
     </div>

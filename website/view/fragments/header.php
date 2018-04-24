@@ -15,10 +15,17 @@
             </a>
             
             <div id="login-area">
-                <form id="login-form" action="controller/user.php" method="POST">
-                    <input type="text" name="username" placeholder="Username">
-                    <input type="password" name="password" placeholder="Password">
-                    <button type="submit" name="login_btn">Login</button>
-                </form>
+				<?php if (isset($_SESSION['logged_in_user'])) { 
+					require_once('model\user_model.php');
+					$user_model = unserialize($_SESSION['logged_in_user']);
+					$username = $user_model->get_username();
+					echo  $username . " <a href='/logout.php'>Log out</a>";
+				} else { ?>
+					<form id="login-form" action="controller/user_controller.php" method="POST">
+						<input type="text" name="username" placeholder="Username">
+						<input type="password" name="password" placeholder="Password">
+						<button type="submit" name="button" value="login">Login</button>
+					</form>
+				<?php } ?>
             </div>
         </header>

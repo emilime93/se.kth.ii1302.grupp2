@@ -40,6 +40,25 @@ class user_db {
 			return false;
 		}
 	}
+	public function login_user($user_DTO) {
+		$username = $user_DTO->get_username();
+		$password = $user_DTO->get_password();
+		
+        $this->connect();
+        $prepare_stmt = $this->connection->prepare("SELECT username, fname, lname, email, password FROM user WHERE username = ?");
+        
+        $prepare_stmt->bind_param('s', $username);
+        $prepare_stmt->execute();
+        $prepare_stmt->bind_result($result_username, $result_fname, $result_lname, $result_email, $result_password);
+        if($prepare_stmt->fetch() && \password_verify($password, $result_password)) {
+			require_once('..\model\user_model.php');
+			$user_model = new user_model($result_username, $result_fname, $result_lname, $result_email);
+			
+            return $user_model;
+        } else {
+            return false;
+        }
+    }
     public function create_user($registry_DTO) {
 		$username = $registry_DTO->get_username();
 		$password = $registry_DTO->get_password();

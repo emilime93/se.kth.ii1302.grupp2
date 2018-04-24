@@ -20,7 +20,23 @@ switch($_POST['button']) {
 
 	break;
 	case "login":
-		echo "login";
+		$username = $_POST['username'];
+		$password = $_POST['password'];
+		
+		require_once('..\modelDTO\user_DTO.php');
+		$user_DTO = new user_DTO($username, $password);
+		
+		require_once('..\integration\user_db.php');
+		$user_db = new user_db();
+		
+		if ($result = $user_db->login_user($user_DTO)) {
+			session_start();
+			$_SESSION['logged_in_user'] = serialize($result);
+		} else {
+			
+		}
+		// TODO: FIXA LYCKAT/FAIL MEDDELANDE
+		header("Location: /index.php");
 	break;
 	default:
 		echo "inget";

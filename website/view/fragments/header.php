@@ -6,11 +6,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>DigiBoard</title>
-        <link rel="stylesheet" type="text/css" href="resources/stylesheet.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/stylesheet.css">
     </head>
     <body>
         <div id="header">
-            <a href="index.html"><img class="logo" alt="logo" src="https://cdn.dribbble.com/users/77598/screenshots/2404454/oppa.jpg"/></a>
+            <a href="index.html"><img class="logo" alt="logo" src="../../resources/img/oppa.jpg"/></a>
             <div id="login">
                 <form action="controller/user.php" method="POST">
                         <input type="text" name="username" placeholder="Username">

@@ -1,96 +1,204 @@
 /* MAIN CSS */
+/********************************************
+*					GENERAL					*
+*********************************************/
+html {
+	height: 100%;
+	box-sizing: border-box;
+}
 
 body {
-	z-index: -2;
-	background: url("https://wallpapersite.com/images/wallpapers/blur-background-2880x1800-spectrum-electromagnetic-4k-901.jpg");
+	position: relative;
+	padding-bottom: 6rem;
+	background: linear-gradient(to right bottom, #525f80 50%, #414b66 50%);
 	background-size: cover;
-        height:100%;
+	min-height: 100%;
 }
-#header {
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+input {
+	margin-top: 10px;
+	padding: 5px;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
+
+form button {
+	font-family: 'Courier New', Courier, monospace;
+	margin: 10px 0 0;
+	padding: 5px;
+	background: #fff;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	margin: 0;
+}
+
+a:link,
+a:active,
+a:visited,
+a:hover {
+    text-decoration: none;
+}
+
+/********************************************
+*					HEADER					*
+*********************************************/
+
+header {
 	background: rgba(0, 0, 0, .8);
 	text-align: center;
 	display: block;
 	width: 100%;
-	height: 130px;
+	padding: 3%;
 }
-.logo {
-	width: 100px;
-	height: 100px;
-	margin-top: 15px;
-	margin-left: 15px;
-	float: left;
+
+#logo-pic {
+	display: none;
 }
-#login {
-	float: right;
-	margin-top: 50px;
-	margin-right: 50px;
+
+#logo {
+	margin: 0;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 2rem;
 }
-#main {
-	width: 1300px;
-	
+
+/********************
+*		LOGIN		*
+*********************/
+
+#login-area {
+	margin-top: 30px;
+}
+
+#login-form input {
+	display: block;
+	width: 100%;
+}
+
+#login-form button {
+	display: block;
+	width: 100%;
+}
+
+/********************************************
+*					MAIN					*
+*********************************************/
+
+main {
+	width: 95%;
 	margin: auto;
 	padding: 5px;
 	background: rgba(135, 135, 135, .7);
-	margin-top: 30px;
-	margin-bottom: 10px;
-        overflow: auto;        
+	border-radius: 10px;
+	margin-top: 25px;
+    overflow: auto;
 }
-.section1, .section2 {
-	width: 37%;
-	height: 500px;
-	margin: auto;
-	float: left;
-	margin-left: 90px;
-	margin-bottom: 30px;
-	background: rgba(100, 100, 100, .7);
 
+main>h1 {
+	margin-top: 15px;
 }
+
+section {
+	width: 100%;
+	margin: 25px auto 0;
+	padding: 10px 5px;
+	background: rgba(100, 100, 100, .7);
+}
+
 h1 {
 	font-size: 24px;
-	font-wight: bold;
+	font-weight: bold;
 	color: white;
-	margin: 15px;
-}
-.comment-box{
-        width: 300px;
-        margin-left: 40px;
-        background: #d6d6d6;
-        margin-right: 100px;
-        margin-bottom: 15px;
-        border-radius: 5px;
-        padding: 0px 20px 10px 20px;
-        line-height: 25px;
-}
-.user-date{
-        font-weight: bold;
-        font-size: 16px;
-        text-decoration: underline;
-}
-#main input {
-        width: 80%;
-        padding: 12px 10px;
-        margin-top: 8px;
-        margin-left: 30px;
-        display: inline-block;
-        border: 1px solid #ccc;
-        box-sizing: border-box;
-}
-#header input {
-        padding: 12px 10px;
-        margin-top: 0px;
-        margin-left: 10px;
-        display: inline-block;
-        border: 1px solid #ccc;
-        box-sizing: border-box;
-}
-button {
-	margin: 10px;
-	margin-left: 10px;
-	padding: 10px 15px;
-}
-#main button {
-	margin-left: 30px;
-	cursor: pointer;
 }
 
+/********************
+*		REGISTER	*
+*********************/
 
+#registry-form input {
+	display: block;
+	width: 100%;
+}
+
+#registry-form button {
+	display: block;
+	width: 100%;
+}
+
+/********************************************
+*					FOOTER					*
+*********************************************/
+
+footer {
+	width: 100%;
+	height: 90px;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	padding-top: 35px;
+	text-align: center;
+	background: rgba(0, 0, 0, .8);
+}
+
+footer p {
+	color: white;
+	margin: 0;
+	font-family: 'Courier New', Courier, monospace;
+}
+
+/********************************************
+*					TABLET					*
+*********************************************/
+
+@media screen and (min-width: 768px) {
+	
+	header #logo{
+		margin: 25px 0 0 10%;
+		float: left;
+		font-size: 3rem;
+	}
+
+	header #login-area {
+		float: right;
+		margin-top: 0;
+		width: 300px;
+	}
+
+	main {
+		width: 80%;
+	}
+
+}
+
+/********************************************
+*					DESKTOP					*
+*********************************************/
+
+@media screen and (min-width: 1024px) {
+	section {
+		width: 45%;
+		display: block;
+		margin-right: 2.5%;
+		margin-left: 2.5%;
+		float: left;
+	}
+
+}
+
+/********************************************
+*					MISC					*
+*********************************************/
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}

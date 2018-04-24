@@ -14,11 +14,9 @@ switch($_POST['button']) {
 		
 		require_once('..\integration\user_db.php');
 		$user_db = new user_db();
-		if ($user_db->create_user($registry_DTO)) {
-			echo "true";
-		} else {
-			echo "false";
-		}
+		$user_db->create_user($registry_DTO);
+		// TODO: FIXA LYCKAT/FAIL MEDDELANDE
+		header("Location: /index.php");
 
 	break;
 	case "login":

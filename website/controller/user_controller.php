@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 switch($_POST['button']) {
 	case "register":
@@ -9,15 +10,25 @@ switch($_POST['button']) {
 		$lname = $_POST['lname'];
 		$email = $_POST['email'];
 		
+		//  the if statement is true if username contains chars that isn't letters, numbers or in "$valid_chars"
+		$valid_chars = array('_', '-');
+		if (!\ctype_alnum(\str_replace($valid_chars, '', $username))) {
+			$_SESSION['register_success'] = false;
+			header("Location: /index.php");
+		}
+		
 		require_once('..\modelDTO\registry_DTO.php');
 		$registry_DTO = new registry_DTO($username, $password, $signup_code, $fname, $lname, $email);
 		
 		require_once('..\integration\user_db.php');
 		$user_db = new user_db();
-		$user_db->create_user($registry_DTO);
-		// TODO: FIXA LYCKAT/FAIL MEDDELANDE
+		
+		if($user_db->create_user($registry_DTO)) {
+			$_SESSION['register_success'] = true;
+		} else {
+			$_SESSION['register_success'] = false;
+		}
 		header("Location: /index.php");
-
 	break;
 	case "login":
 		$username = $_POST['username'];
@@ -33,35 +44,11 @@ switch($_POST['button']) {
 			session_start();
 			$_SESSION['logged_in_user'] = serialize($result);
 		} else {
-			
+			$_SESSION['login_failed'] = true;
 		}
-		// TODO: FIXA LYCKAT/FAIL MEDDELANDE
 		header("Location: /index.php");
 	break;
 	default:
-		echo "inget";
+		header("Location: /index.php");
 	break;
 }
-
-/*
-if (isset($_POST['login_btn'])) {
-    UserController.register_user();
-    echo("Login");
-} elseif(isset($_POST['register_btn'])) {
-    echo("Register");
-} else {
-    echo("Other");
-}
-
-class UserController {
-    
-    public function register_user() {
-        echo("Register user " . $_POST['username'] . " with password " . $_POST['password']);
-    }
-
-    public function login_user() {
-        echo("Login in user " . $_POST['username'] . " with password " . $_POST['password']);
-    }
-
-}
-*/

@@ -1,6 +1,6 @@
 <?php
 
-class MessageDB {
+class message_db {
 	private $HOST;
 	private $DATABASE;
 	private $USER;
@@ -52,7 +52,7 @@ class MessageDB {
 		
 		while($row = $result->fetch_assoc() {
 			require_once("../model/message_model.php");
-			new 
+			new MessageModel();
 		}
 		/**************************/
 		if($stmt = $mysqli->prepare($query)){

@@ -17,9 +17,9 @@
 				<?php 
 				if (isset($_SESSION['register_success'])) {
 					if ($_SESSION['register_success']) {
-						echo "<p class='register_success_message'>You are now registered!</p>";
+						echo '<p class="success">You are now registered!</p>';
 					} else {
-						echo "<p class='register_error_message'>Registration failed!</p>";
+						echo '<p class="error">Registration failed!</p>';
 					}
 					unset($_SESSION['register_success']);
 				}

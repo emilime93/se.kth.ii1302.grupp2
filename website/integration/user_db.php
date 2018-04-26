@@ -29,7 +29,7 @@ class user_db {
         $prepare_stmt->execute();
         $prepare_stmt->bind_result($result_username, $result_fname, $result_lname, $result_email, $result_password);
         if($prepare_stmt->fetch() && \password_verify($password, $result_password)) {
-			require_once('..\model\user_model.php');
+			require_once('../model/user_model.php');
 			$user_model = new user_model($result_username, $result_fname, $result_lname, $result_email);
 			
             return $user_model;

@@ -7,8 +7,8 @@
 		<section>
 			<h1>Register</h1>
 			<form id="registry-form" action="../../controller/user_controller.php" method="POST">
-				<input type="text" name="first" placeholder="Firstname">
-			    <input type="text" name="last" placeholder="Lastname">
+				<input type="text" name="fname" placeholder="Firstname">
+			    <input type="text" name="lname" placeholder="Lastname">
 			    <input type="text" name="username" placeholder="Username">
 			    <input type="text" name="signup_code" placeholder="Signup Code">
 			    <input type="email" name="email" placeholder="E-mail">

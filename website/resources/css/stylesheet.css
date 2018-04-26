@@ -116,6 +116,18 @@ section {
 	background: rgba(100, 100, 100, .7);
 }
 
+#banner {
+	background:black;
+	color: lightgray;
+	border-radius: 10px;
+}
+#banner>p {
+	font-family: 'Courier New', Courier, monospace;
+	color: #158815;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
 h1 {
 	font-size: 24px;
 	font-weight: bold;
@@ -201,6 +213,13 @@ footer p {
 		margin-right: 2.5%;
 		margin-left: 2.5%;
 		float: left;
+	}
+
+	#banner {
+		width: 95%;
+		display: block;
+		float: left;
+		margin: 0 2.5%;
 	}
 
 }

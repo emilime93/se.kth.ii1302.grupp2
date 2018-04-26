@@ -17,10 +17,10 @@ switch($_POST['button']) {
 			header("Location: /index.php");
 		}
 		
-		require_once('..\modelDTO\registry_DTO.php');
+		require_once('../modelDTO/registry_DTO.php');
 		$registry_DTO = new registry_DTO($username, $password, $signup_code, $fname, $lname, $email);
 		
-		require_once('..\integration\user_db.php');
+		require_once('../integration/user_db.php');
 		$user_db = new user_db();
 		
 		if($user_db->create_user($registry_DTO)) {
@@ -34,10 +34,10 @@ switch($_POST['button']) {
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 		
-		require_once('..\modelDTO\user_DTO.php');
+		require_once('../modelDTO/user_DTO.php');
 		$user_DTO = new user_DTO($username, $password);
 		
-		require_once('..\integration\user_db.php');
+		require_once('../integration/user_db.php');
 		$user_db = new user_db();
 		
 		if ($result = $user_db->login_user($user_DTO)) {

@@ -47,4 +47,11 @@ class MessageController {
 
 	}
 
+	function get_saved_messages() {
+		$user = $_SESSION['logged_in_user'];
+		$username = $user->get_username();
+
+
+	}
+
 }

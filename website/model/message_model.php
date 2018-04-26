@@ -1,6 +1,6 @@
 <?php
 
-class message_model {
+class MessageModel {
 	private $text;
 	private $date;
 	private $time_to_live;

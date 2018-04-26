@@ -1,6 +1,6 @@
 <?php
 
-class message_DTO {
+class MessageDTO {
 	private $text;
 	private $time_to_live;
 	

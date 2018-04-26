@@ -2,7 +2,7 @@
 
 require_once('user_DTO.php');
 
-class registry_DTO extends user_DTO {
+class RegistryDTO extends UserDTO {
 	private $signup_code;
 	private $fname;
 	private $lname;

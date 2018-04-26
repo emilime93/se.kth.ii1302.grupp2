@@ -13,7 +13,7 @@
 			    <input type="text" name="signup_code" placeholder="Signup Code">
 			    <input type="email" name="email" placeholder="E-mail">
 			    <input type="password" name="password" placeholder="Password">
-			    <button type="submit" name="button" value="register">Signup</button>
+			    <button type="submit" name="submit" value="register">Signup</button>
 				<?php 
 				if (isset($_SESSION['register_success'])) {
 					if ($_SESSION['register_success']) {

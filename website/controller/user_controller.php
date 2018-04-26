@@ -1,17 +1,10 @@
 <?php
 class UserController {
 	function create_user($registry_DTO) {
-		//  the if statement is true if username contains chars that isn't letters, numbers or in "$valid_chars"
-		$valid_chars = array('_', '-');
-		if (!\ctype_alnum(\str_replace($valid_chars, '', $username))) {
-			$_SESSION['register_success'] = false;
-			header("Location: /index.php");
-		}
-		
 		require_once('../integration/user_db.php');
-		$user_db = new UserDB();
+		$UserDB = new UserDB();
 		
-		if($user_db->create_user($registry_DTO)) {
+		if($UserDB->create_user($registry_DTO)) {
 			$_SESSION['register_success'] = true;
 		} else {
 			$_SESSION['register_success'] = false;
@@ -20,10 +13,9 @@ class UserController {
 	}
 	function login_user($user_DTO) {
 		require_once('../integration/user_db.php');
-		$user_db = new UserDB();
+		$UserDB = new UserDB();
 		
-		if ($result = $user_db->login_user($user_DTO)) {
-			session_start();
+		if ($result = $UserDB->login_user($user_DTO)) {
 			$_SESSION['logged_in_user'] = serialize($result);
 		} else {
 			$_SESSION['login_failed'] = true;
@@ -33,6 +25,6 @@ class UserController {
 
 	function log_out() {
 		unset($_SESSION['logged_in_user']);
-		header('Location: index.php');
+		header('Location: /index.php');
 	}
 }

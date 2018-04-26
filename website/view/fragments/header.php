@@ -20,14 +20,17 @@
 					require_once('model/user_model.php');
 					$user_model = unserialize($_SESSION['logged_in_user']);
 					$username = $user_model->get_username();
-					echo  "Logged in as " . $username . " <a href='/logout.php'>Log out</a>";
+					echo  "Logged in as " . $username;
+					echo '<form id="logout_form" action="util/post_handler.php" method="POST">';
+					echo '	<button type="submit" name="submit" value="logout">Log out</button>';
+					echo '</form>';
 					
 				} else { ?>
 				
-					<form id="login-form" action="controller/user_controller.php" method="POST">
+					<form id="login-form" action="util/post_handler.php" method="POST">
 						<input type="text" name="username" placeholder="Username">
 						<input type="password" name="password" placeholder="Password">
-						<button type="submit" name="button" value="login">Login</button>
+						<button type="submit" name="submit" value="login">Login</button>
 					</form>
 					
 					<?php if (isset($_SESSION['login_failed'])) {

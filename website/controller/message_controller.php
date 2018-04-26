@@ -14,10 +14,10 @@ class MessageController {
 		$username = $user_model->get_username();
 		
 		require_once('../modelDTO/message_DTO.php');
-		$message_DTO = new message_DTO($message, null);
+		$message_DTO = new MessageDTO($message, null);
 		
 		require_once('../integration/message_db.php');
-		$message_db = new message_db();
+		$message_db = new MessageDB();
 		
 		if($message_db->save_message($message_DTO, $username)) {
 			$_SESSION['save_message_success'] = true;
@@ -39,7 +39,7 @@ class MessageController {
 		$username = $user_model->get_username();
 		
 		require_once('../integration/message_db.php');
-		$message_db = new message_db();
+		$message_db = new MessageDB();
 		
 		if($message_db->erase_saved_message($id, $username)) {
 			$_SESSION['erase_saved_message_success'] = true;

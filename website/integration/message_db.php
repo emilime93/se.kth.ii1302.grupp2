@@ -1,6 +1,6 @@
 <?php
 
-class message_db {
+class MessageDB {
 	private $HOST;
 	private $DATABASE;
 	private $USER;

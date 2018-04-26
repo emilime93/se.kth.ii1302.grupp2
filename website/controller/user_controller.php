@@ -9,7 +9,7 @@ class UserController {
 		}
 		
 		require_once('../integration/user_db.php');
-		$user_db = new user_db();
+		$user_db = new UserDB();
 		
 		if($user_db->create_user($registry_DTO)) {
 			$_SESSION['register_success'] = true;
@@ -20,7 +20,7 @@ class UserController {
 	}
 	function login_user($user_DTO) {
 		require_once('../integration/user_db.php');
-		$user_db = new user_db();
+		$user_db = new UserDB();
 		
 		if ($result = $user_db->login_user($user_DTO)) {
 			session_start();

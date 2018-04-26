@@ -1,6 +1,6 @@
 <?php
 
-class user_DTO {
+class UserDTO {
 	private $username;
 	private $password;
 	

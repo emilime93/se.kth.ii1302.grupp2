@@ -21,7 +21,7 @@
         ?>
         <textarea form="save_message_form" name="text" id="" cols="30" rows="10"></textarea>
         <form id="save_message_form" action="../../controller/message_controller.php" method="POST">
-            <input type="submit" name="button" value="save">
+			<button type="submit" name="submit" value="save">Save message</button>
         </form>
         <?php
             if(isset($_SESSION['save_message_success'])) {
@@ -39,7 +39,7 @@
         <h2>Enter Message</h2>
         <textarea placeholder="Message to display" form="enter_message_form" name="message" cols="30" rows="10"></textarea>
         <form id="enter_message_form" action="../../controller/message_controller.php" method="POST">
-            <input type="submit" value="Send">
+			<button type="submit" name="submit" value="send">Send message</button>
         </form>
     </section>
 </main>

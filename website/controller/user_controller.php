@@ -30,4 +30,9 @@ class UserController {
 		}
 		header("Location: /index.php");
 	}
+
+	function log_out() {
+		unset($_SESSION['logged_in_user']);
+		header('Location: index.php');
+	}
 }

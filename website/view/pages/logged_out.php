@@ -1,11 +1,11 @@
 <main class="clearfix">
 		<h1>Welcome to DigiBoards site</h1>
 		<section>
-			<h1>Messages</h1>
+			<h2>Messages</h2>
 			<p>Welcome to out amazing site.</p>
 		</section>
 		<section>
-			<h1>Register</h1>
+			<h2>Register</h2>
 			<form id="registry-form" action="../../controller/user_controller.php" method="POST">
 				<input type="text" name="fname" placeholder="Firstname">
 			    <input type="text" name="lname" placeholder="Lastname">
@@ -17,9 +17,9 @@
 				<?php 
 				if (isset($_SESSION['register_success'])) {
 					if ($_SESSION['register_success']) {
-						echo "<p class='register_success_message'>You are now registered!</p>";
+						echo '<p class="success">You are now registered!</p>';
 					} else {
-						echo "<p class='register_error_message'>Registration failed!</p>";
+						echo '<p class="error">Registration failed!</p>';
 					}
 					unset($_SESSION['register_success']);
 				}

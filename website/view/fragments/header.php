@@ -31,7 +31,7 @@
 					</form>
 					
 					<?php if (isset($_SESSION['login_failed'])) {
-						echo "<p class='login_error_message'>Login failed!</p>";
+						echo '<p class="error">Login failed!</p>';
 						unset($_SESSION['login_failed']);
 					}
 				} ?>

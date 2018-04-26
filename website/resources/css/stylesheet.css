@@ -47,6 +47,25 @@ a:hover {
     text-decoration: none;
 }
 
+/********************
+*		COLORS		*
+********************/
+
+.error {
+	color: red;
+}
+
+.success {
+	color: green;
+}
+
+.success,
+.error {
+	background: #b2bed6;
+	border-radius: 10px;
+	padding: 5px;
+}
+
 /********************************************
 *					HEADER					*
 *********************************************/
@@ -87,9 +106,7 @@ header {
 	width: 100%;
 }
 
-.login_error_message {
-	color: red;
-}
+
 
 /********************************************
 *					MAIN					*
@@ -116,6 +133,18 @@ section {
 	background: rgba(100, 100, 100, .7);
 }
 
+#banner {
+	background:black;
+	color: lightgray;
+	border-radius: 10px;
+}
+#banner>p {
+	font-family: 'Courier New', Courier, monospace;
+	color: #158815;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
 h1 {
 	font-size: 24px;
 	font-weight: bold;
@@ -134,14 +163,6 @@ h1 {
 #registry-form button {
 	display: block;
 	width: 100%;
-}
-
-.register_error_message {
-	color: red;
-}
-
-.register_success_message {
-	color: green;
 }
 
 /********************************************
@@ -201,6 +222,13 @@ footer p {
 		margin-right: 2.5%;
 		margin-left: 2.5%;
 		float: left;
+	}
+
+	#banner {
+		width: 95%;
+		display: block;
+		float: left;
+		margin: 0 2.5%;
 	}
 
 }

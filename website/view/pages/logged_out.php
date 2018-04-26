@@ -14,6 +14,16 @@
 			    <input type="email" name="email" placeholder="E-mail">
 			    <input type="password" name="password" placeholder="Password">
 			    <button type="submit" name="button" value="register">Signup</button>
+				<?php 
+				if (isset($_SESSION['register_success'])) {
+					if ($_SESSION['register_success']) {
+						echo "You are now registered!";
+					} else {
+						echo "Registration failed!";
+					}
+					unset($_SESSION['register_success']);
+				}
+				?>
        </form>
 		</section>
 	

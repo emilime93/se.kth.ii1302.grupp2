@@ -18,28 +18,6 @@ class user_db {
         \mysqli_report(MYSQLI_REPORT_ERROR);
         $this->connection = new \mysqli($this->HOST, $this->USER, $this->PASSWORD, $this->DATABASE);
     }
-	
-    public function user_exists($username) {
-        $this->connect();
-        $prepare_stmt = $this->connection->prepare("SELECT username FROM user WHERE username = ?");
-        
-        $prepare_stmt->bind_param('s', $username);
-        $prepare_stmt->execute();
-        $prepare_stmt->bind_result($username_result);
-        return $prepare_stmt->fetch();
-    }
-	private function signup_code_exists($signup_code) { // Checks if the signup code exists. Deletes the code if it exists and returns true.
-        $this->connect();
-        $prepare_stmt = $this->connection->prepare("DELETE FROM code WHERE code = ?");
-        
-        $prepare_stmt->bind_param('s', $signup_code);
-        $prepare_stmt->execute();
-		if ($prepare_stmt->affected_rows > 0) {
-			return true;
-		} else {
-			return false;
-		}
-	}
 	public function login_user($user_DTO) {
 		$username = $user_DTO->get_username();
 		$password = $user_DTO->get_password();
@@ -67,7 +45,7 @@ class user_db {
 		$lname = $registry_DTO->get_lname();
 		$email = $registry_DTO->get_email();
 		
-		if ($this->signup_code_exists($signup_code)) {
+		if (!($this->user_exists($username)) && $this->signup_code_exists($signup_code)) {
 			$this->connect();
 			$prepare_stmt = $this->connection->prepare("INSERT INTO user (username, fname, lname, email, password) VALUES (?, ?, ?, ?, ?)");
 			
@@ -77,4 +55,25 @@ class user_db {
 			return false;
 		}
     }
+	private function user_exists($username) {
+        $this->connect();
+        $prepare_stmt = $this->connection->prepare("SELECT username FROM user WHERE username = ?");
+        
+        $prepare_stmt->bind_param('s', $username);
+        $prepare_stmt->execute();
+        $prepare_stmt->bind_result($username_result);
+        return $prepare_stmt->fetch();
+    }
+	private function signup_code_exists($signup_code) { // Checks if the signup code exists. Deletes the code if it exists and returns true.
+        $this->connect();
+        $prepare_stmt = $this->connection->prepare("DELETE FROM code WHERE code = ?");
+        
+        $prepare_stmt->bind_param('s', $signup_code);
+        $prepare_stmt->execute();
+		if ($prepare_stmt->affected_rows > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

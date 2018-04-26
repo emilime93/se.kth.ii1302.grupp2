@@ -87,6 +87,10 @@ header {
 	width: 100%;
 }
 
+.login_error_message {
+	color: red;
+}
+
 /********************************************
 *					MAIN					*
 *********************************************/
@@ -130,6 +134,14 @@ h1 {
 #registry-form button {
 	display: block;
 	width: 100%;
+}
+
+.register_error_message {
+	color: red;
+}
+
+.register_success_message {
+	color: green;
 }
 
 /********************************************

@@ -11,7 +11,7 @@
             $msg_handler = new MessageHandler();
             echo($msg_handler->print_saved_messages());
         ?>
-        <textarea form="save_message_form" name="text" id="" cols="30" rows="10"></textarea>
+        <textarea placeholder="Enter message to save" form="save_message_form" name="text" id="save-message-textarea" cols="30" rows="10"></textarea>
         <form id="save_message_form" action="util/post_handler.php" method="POST">
 			<input type="text" name="time_to_live" placeholder="Time to live (seconds)">
 			<button type="submit" name="submit" value="save">Save message</button>
@@ -39,7 +39,7 @@
 
     <section>
         <h2>Enter Message</h2>
-        <textarea placeholder="Message to display" form="enter_message_form" name="text" cols="30" rows="10"></textarea>
+        <textarea placeholder="Message to display" form="enter_message_form" id="enter-message-textarea" name="text" cols="30" rows="10"></textarea>
         <form id="enter_message_form" action="util/post_handler.php" method="POST">
 			<input type="text" name="time_to_live" placeholder="Time to live (seconds)">
 			<button type="submit" name="submit" value="send">Send message</button>

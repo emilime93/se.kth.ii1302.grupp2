@@ -23,7 +23,8 @@ class MessageDB {
 		
         $this->connect();
 		$prepare_stmt = $this->connection->prepare("INSERT INTO message (text, username, time_to_live) VALUES (?, ?, ?)");
-		$prepare_stmt->bind_param('ssi', $text, $username, $message_DTO->get_time_to_live());
+		$ttl = $message_DTO->get_time_to_live();
+		$prepare_stmt->bind_param('ssi', $text, $username, $ttl);
 		$result = $prepare_stmt->execute();
 		$prepare_stmt->close();
 		return $result;

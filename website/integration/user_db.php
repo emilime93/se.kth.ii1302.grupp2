@@ -29,11 +29,12 @@ class UserDB {
         $prepare_stmt->execute();
         $prepare_stmt->bind_result($result_username, $result_fname, $result_lname, $result_email, $result_password);
         if($prepare_stmt->fetch() && \password_verify($password, $result_password)) {
-			require_once('../model/user_model.php');
+			require_once($_SERVER['DOCUMENT_ROOT'].'/model/user_model.php');
 			$user_model = new UserModel($result_username, $result_fname, $result_lname, $result_email);
-			
+			$prepare_stmt->execute();
             return $user_model;
         } else {
+			$prepare_stmt->execute();
             return false;
         }
     }
@@ -50,8 +51,11 @@ class UserDB {
 			$prepare_stmt = $this->connection->prepare("INSERT INTO user (username, fname, lname, email, password) VALUES (?, ?, ?, ?, ?)");
 			
 			$prepare_stmt->bind_param('sssss', $username, $fname, $lname, $email, $password);
-			return $prepare_stmt->execute();
+			$result = $prepare_stmt->execute();
+			$prepare_stmt->close();
+			return $result;
 		} else {
+			$prepare_stmt->close();
 			return false;
 		}
     }
@@ -61,8 +65,11 @@ class UserDB {
         
         $prepare_stmt->bind_param('s', $username);
         $prepare_stmt->execute();
-        $prepare_stmt->bind_result($username_result);
-        return $prepare_stmt->fetch();
+		$prepare_stmt->bind_result($username_result);
+		
+		$result = $prepare_stmt->fetch();
+		$prepare_stmt->close();
+        return $result;
     }
 	private function signup_code_exists($signup_code) { // Checks if the signup code exists. Deletes the code if it exists and returns true.
         $this->connect();
@@ -71,8 +78,10 @@ class UserDB {
         $prepare_stmt->bind_param('s', $signup_code);
         $prepare_stmt->execute();
 		if ($prepare_stmt->affected_rows > 0) {
+			$prepare_stmt->close();
 			return true;
 		} else {
+			$prepare_stmt->close();
 			return false;
 		}
 	}

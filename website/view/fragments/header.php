@@ -17,7 +17,7 @@
             <div id="login-area">
 				<?php if (isset($_SESSION['logged_in_user'])) { 
 				
-					require_once('model/user_model.php');
+					require_once($_SERVER['DOCUMENT_ROOT'].'/model/user_model.php');
 					$user_model = unserialize($_SESSION['logged_in_user']);
 					$username = $user_model->get_username();
 					echo  "Logged in as " . $username;

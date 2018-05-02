@@ -15,9 +15,9 @@
             <p>Skolkar (hehe)</p>
         </div>
         <?php 
-            // require_once('controller/message_controller.php');
-            // $obj = new MessageController();
-            // echo($obj->getABC);
+            require_once($_SERVER['DOCUMENT_ROOT'].'/model/message_handler.php');
+            $msg_handler = new MessageHandler();
+            echo($msg_handler->print_saved_messages());
         ?>
         <textarea form="save_message_form" name="text" id="" cols="30" rows="10"></textarea>
         <form id="save_message_form" action="util/post_handler.php" method="POST">

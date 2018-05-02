@@ -9,11 +9,11 @@ class MessageController {
 			// 	header("Location: /index.php");
 			// }	
 		
-		require_once('../model/user_model.php');
+		require_once($_SERVER['DOCUMENT_ROOT'].'/model/user_model.php');
 		$user_model = unserialize($_SESSION['logged_in_user']);
 		$username = $user_model->get_username();
 
-		require_once('../integration/message_db.php');
+		require_once($_SERVER['DOCUMENT_ROOT'].'/integration/message_db.php');
 		$message_db = new MessageDB();
 		
 		if($message_db->save_message($MessageDTO, $username)) {
@@ -31,11 +31,11 @@ class MessageController {
 		// 	header("Location: /index.php");
 		// }
 		
-		require_once('../model/user_model.php');
+		require_once($_SERVER['DOCUMENT_ROOT'].'/model/user_model.php');
 		$user_model = unserialize($_SESSION['logged_in_user']);
 		$username = $user_model->get_username();
 		
-		require_once('../integration/message_db.php');
+		require_once($_SERVER['DOCUMENT_ROOT'].'/integration/message_db.php');
 		$message_db = new MessageDB();
 		
 		if($message_db->erase_saved_message($id, $username)) {
@@ -48,10 +48,12 @@ class MessageController {
 	}
 
 	function get_saved_messages() {
-		$user = $_SESSION['logged_in_user'];
+		$user = unserialize($_SESSION['logged_in_user']);
 		$username = $user->get_username();
-
-
+		
+		require_once($_SERVER['DOCUMENT_ROOT'].'/integration/message_db.php');
+		$msg_db = new MessageDB();
+		return $msg_db->get_saved_messages($username);
 	}
 
 }

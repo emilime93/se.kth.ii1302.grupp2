@@ -29,8 +29,9 @@
 
     <section>
         <h2>Enter Message</h2>
-        <textarea placeholder="Message to display" form="enter_message_form" name="message" cols="30" rows="10"></textarea>
+        <textarea placeholder="Message to display" form="enter_message_form" name="text" cols="30" rows="10"></textarea>
         <form id="enter_message_form" action="util/post_handler.php" method="POST">
+			<input type="text" name="time_to_live" placeholder="Time to live (seconds)">
 			<button type="submit" name="submit" value="send">Send message</button>
         </form>
     </section>

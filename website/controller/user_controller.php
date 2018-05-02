@@ -1,7 +1,7 @@
 <?php
 class UserController {
 	function create_user($registry_DTO) {
-		require_once('../integration/user_db.php');
+		require_once($_SERVER['DOCUMENT_ROOT'].'/integration/user_db.php');
 		$UserDB = new UserDB();
 		
 		if($UserDB->create_user($registry_DTO)) {
@@ -12,7 +12,7 @@ class UserController {
 		header("Location: /index.php");
 	}
 	function login_user($user_DTO) {
-		require_once('../integration/user_db.php');
+		require_once($_SERVER['DOCUMENT_ROOT'].'/integration/user_db.php');
 		$UserDB = new UserDB();
 		
 		if ($result = $UserDB->login_user($user_DTO)) {

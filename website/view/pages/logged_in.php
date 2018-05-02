@@ -3,21 +3,12 @@
         <h2>Currently displayed Message</h2>
         <p>Hej hej monika hej på dig monika!</p>
     </section>
+    <!-- Saved Messages Section -->
     <section>
-        <h2>Saved Messages</h2>
-        <div class="message">
-            <p>Jag VABBAR</p>
-        </div>
-        <div class="message">
-            <p>Fast i Trafik</p>
-        </div>
-        <div class="message">
-            <p>Skolkar (hehe)</p>
-        </div>
         <?php 
-            // require_once('controller/message_controller.php');
-            // $obj = new MessageController();
-            // echo($obj->getABC);
+            require_once($_SERVER['DOCUMENT_ROOT'].'/model/message_handler.php');
+            $msg_handler = new MessageHandler();
+            echo($msg_handler->print_saved_messages());
         ?>
         <textarea form="save_message_form" name="text" id="" cols="30" rows="10"></textarea>
         <form id="save_message_form" action="util/post_handler.php" method="POST">

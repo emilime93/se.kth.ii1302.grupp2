@@ -159,7 +159,8 @@ h1 {
 .message {
 	padding: 5px;
 	border-radius: 10px;
-	background: rgb(95, 154, 212);
+	background: white;
+	font-family: 'Courier New', Courier, monospace;
 	margin: 25px 0 25px 0;
 }
 
@@ -176,6 +177,10 @@ h1 {
  {
 	width: 100%;
 	height: 100px;
+}
+#save-message-form button,
+#enter-message-form button {
+	float: right;
 }
 
 /********************

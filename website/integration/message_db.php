@@ -1,6 +1,6 @@
 <?php
 
-class message_db {
+class MessageDB {
 	private $HOST;
 	private $DATABASE;
 	private $USER;
@@ -41,7 +41,7 @@ class message_db {
 	}
 
 	function get_saved_messages($user) {
-		$this-connect();
+		$this->connect();
 		$prepare_stmt = $this->connection->prepare("SELECT * FROM message WHERE username = ?");
 		
 		$prepare_stmt->bind_param('s', $user);
@@ -52,9 +52,10 @@ class message_db {
 		
 		while($row = $result->fetch_assoc() {
 			require_once("../model/message_model.php");
-			new MessageModel();
+			$msg_model = new MessageModel($row['text'], $row['date'], null);
 		}
 		/**************************/
+		// FROM STACK OVERFLOW
 		if($stmt = $mysqli->prepare($query)){
 			/*
 				 Binds variables to prepared statement

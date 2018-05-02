@@ -7,7 +7,7 @@
 
     <section>
         <h2>Enter Message</h2>
-        <textarea placeholder="Message to display" form="enter_message_form" id="enter-message-textarea" name="text" cols="30" rows="10"></textarea>
+        <textarea placeholder="Message to display" form="enter-message-form" id="enter-message-textarea" name="text" cols="30" rows="10"></textarea>
         <form id="enter-message-form" action="util/post_handler.php" method="POST">
             <input type="text" name="time_to_live" placeholder="Time to live (seconds)">
             <button type="submit" name="submit" value="send">Send message</button>

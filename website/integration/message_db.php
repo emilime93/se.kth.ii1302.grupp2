@@ -60,7 +60,7 @@ class MessageDB {
 			$msg_model = new MessageModel($row['text'], $row['date'], null);
 			array_push($result_array, $msg_model);
 		}
-		$stmt->close();
+		$prepare_stmt->close();
 		return $result_array;
 		/*
 		// FROM STACK OVERFLOW

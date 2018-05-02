@@ -2,7 +2,7 @@
 
 class MessageController {
 	
-	function save_message($message) {
+	function save_message($MessageDTO) {
 		// // true if the user isn't logged in!
 		// if (!isset($_SESSION['logged_in_user'])) {
 			// 	$_SESSION['save_message_success'] = false;
@@ -12,14 +12,11 @@ class MessageController {
 		require_once('../model/user_model.php');
 		$user_model = unserialize($_SESSION['logged_in_user']);
 		$username = $user_model->get_username();
-		
-		require_once('../modelDTO/message_DTO.php');
-		$message_DTO = new MessageDTO($message, null);
-		
+
 		require_once('../integration/message_db.php');
 		$message_db = new MessageDB();
 		
-		if($message_db->save_message($message_DTO, $username)) {
+		if($message_db->save_message($MessageDTO, $username)) {
 			$_SESSION['save_message_success'] = true;
 		} else {
 			$_SESSION['save_message_success'] = false;

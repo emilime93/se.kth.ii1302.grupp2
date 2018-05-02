@@ -6,7 +6,7 @@
 		</section>
 		<section>
 			<h2>Register</h2>
-			<form id="registry-form" action="../../controller/user_controller.php" method="POST">
+			<form id="registry-form" action="util/post_handler.php" method="POST">
 				<input type="text" name="fname" placeholder="Firstname">
 			    <input type="text" name="lname" placeholder="Lastname">
 			    <input type="text" name="username" placeholder="Username">

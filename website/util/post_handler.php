@@ -49,9 +49,11 @@ switch($_POST['submit']) {
 		$MessageController = new MessageController();
 		$MessageController->save_message($MessageDTO);
 	break;
-	case "delete_saved":
-		$id = $_POST['id'];
-		$username = $_SESSION['logged_in_user'];
+	case "delete-saved":
+		$id = $_POST['comment-id'];
+		require_once($_SERVER['DOCUMENT_ROOT'].'/model/user_model.php');
+		$username = unserialize($_SESSION['logged_in_user']);
+		
 		require_once($_SERVER['DOCUMENT_ROOT'].'/modelDTO/message_DTO.php');
 		$MessageDTO = new MessageDTO($text, $time_to_live);
 		

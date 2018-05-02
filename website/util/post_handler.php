@@ -41,7 +41,11 @@ switch($_POST['submit']) {
 	*********************/
 	case "save":
 		$text = $_POST['text'];
-		$time_to_live = $_POST['time_to_live'];
+		if (isset($_POST['time_to_live'])) {
+			$time_to_live = $_POST['time_to_live'];
+		} else {
+			$time_to_live = 0;
+		}
 		require_once($_SERVER['DOCUMENT_ROOT'].'/modelDTO/message_DTO.php');
 		$MessageDTO = new MessageDTO($text, $time_to_live);
 		
@@ -63,7 +67,11 @@ switch($_POST['submit']) {
 	break;
 	case "send":
 		$text = $_POST['text'];
-		$time_to_live = $_POST['time_to_live'];
+		if (isset($_POST['time_to_live'])) {
+			$time_to_live = $_POST['time_to_live'];
+		} else {
+			$time_to_live = 0;
+		}
 		require_once($_SERVER['DOCUMENT_ROOT'].'/modelDTO/message_DTO.php');
 		$MessageDTO = new MessageDTO($text, $time_to_live);
 		

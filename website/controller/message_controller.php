@@ -44,7 +44,6 @@ class MessageController {
 			$_SESSION['erase_saved_message_success'] = false;
 		}
 		header("Location: /index.php");
-
 	}
 
 	function get_saved_messages() {

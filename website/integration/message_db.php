@@ -58,7 +58,7 @@ class MessageDB {
 		$result_array = array();
 		while($row = $result->fetch_assoc()) {
 			require_once($_SERVER['DOCUMENT_ROOT']."/model/message_model.php");
-			$msg_model = new MessageModel($row['text'], $row['date'], null);
+			$msg_model = new MessageModel($row['text'], $row['date'], $row['time_to_live'], $row['id']);
 			array_push($result_array, $msg_model);
 		}
 		$prepare_stmt->close();

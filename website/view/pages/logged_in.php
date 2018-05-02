@@ -5,6 +5,7 @@
     </section>
     <!-- Saved Messages Section -->
     <section>
+        <h2>Saved Messages</h2>
         <?php 
             require_once($_SERVER['DOCUMENT_ROOT'].'/model/message_handler.php');
             $msg_handler = new MessageHandler();
@@ -24,6 +25,15 @@
                     echo '<p class="error">Error saving message</p>';
                 }
             }
+            if(isset($_SESSION['erase_saved_message_success'])) {
+                if($_SESSION['erase_saved_message_success']) {
+                    echo '<p class="success">Message successfully deleted!</p>';
+                    unset($_SESSION['erase_saved_message_success']);
+                } else {
+                    echo '<p class="error">Error deleting message</p>';
+                }
+            }
+            
         ?>
     </section>
 
@@ -34,5 +44,15 @@
 			<input type="text" name="time_to_live" placeholder="Time to live (seconds)">
 			<button type="submit" name="submit" value="send">Send message</button>
         </form>
+        <?php
+            if(isset($_SESSION['send_message_success'])) {
+                if($_SESSION['send_message_success']) {
+                    echo '<p class="success">Message successfully sent!</p>';
+                    unset($_SESSION['send_message_success']);
+                } else {
+                    echo '<p class="error">Error sending message.</p>';
+                }
+            }
+        ?>
     </section>
 </main>

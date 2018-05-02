@@ -153,6 +153,24 @@ h1 {
 }
 
 /********************
+*		SAVED MSG	*
+********************/
+
+.message {
+	padding: 5px;
+	border-radius: 10px;
+	background: rgb(95, 154, 212);
+}
+
+.message #delete-button {
+	background: #f00;
+	color: #e9bbbb;
+	border: none;
+	border-radius: 5px;
+	float: right;
+}
+
+/********************
 *		REGISTER	*
 *********************/
 

@@ -56,5 +56,16 @@ class MessageController {
 		$msg_db = new MessageDB();
 		return $msg_db->get_saved_messages($username);
 	}
+	
+	function send_message($MessageDTO) {
+		require_once($_SERVER['DOCUMENT_ROOT'].'/integration/display.php');
+		$display = new Display();
+		if($display->send_message($MessageDTO)) {
+			$_SESSION['send_message_success'] = true;
+		} else {
+			$_SESSION['send_message_success'] = false;
+		}
+		header("Location: /index.php");
+	}
 
 }

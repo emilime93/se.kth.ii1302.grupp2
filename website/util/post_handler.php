@@ -59,11 +59,16 @@ switch($_POST['submit']) {
 		$MessageController = new MessageController();
 		$MessageController->delete_saved_message($id, $username);
 	break;
-	/*
 	case "send":
-	
+		$text = $_POST['text'];
+		$time_to_live = $_POST['time_to_live'];
+		require_once($_SERVER['DOCUMENT_ROOT'].'/modelDTO/message_DTO.php');
+		$MessageDTO = new MessageDTO($text, $time_to_live);
+		
+		require_once($_SERVER['DOCUMENT_ROOT'].'/controller/message_controller.php');
+		$MessageController = new MessageController();
+		$MessageController->send_message($MessageDTO);
 	break;
-	*/
 	default:
 		header("Location: /index.php");
 	break;

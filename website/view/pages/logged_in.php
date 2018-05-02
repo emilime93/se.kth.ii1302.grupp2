@@ -19,6 +19,7 @@
                     unset($_SESSION['send_message_success']);
                 } else {
                     echo '<p class="error">Error sending message.</p>';
+					unset($_SESSION['send_message_success']);
                 }
             }
         ?>
@@ -44,6 +45,7 @@
                     unset($_SESSION['save_message_success']);
                 } else {
                     echo '<p class="error">Error saving message</p>';
+					unset($_SESSION['send_message_success']);
                 }
             }
             if(isset($_SESSION['erase_saved_message_success'])) {
@@ -52,6 +54,7 @@
                     unset($_SESSION['erase_saved_message_success']);
                 } else {
                     echo '<p class="error">Error deleting message</p>';
+					unset($_SESSION['send_message_success']);
                 }
             }
             

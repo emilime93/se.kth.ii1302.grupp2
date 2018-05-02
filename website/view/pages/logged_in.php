@@ -3,17 +3,8 @@
         <h2>Currently displayed Message</h2>
         <p>Hej hej monika hej på dig monika!</p>
     </section>
+    <!-- Saved Messages Section -->
     <section>
-        <h2>Saved Messages</h2>
-        <div class="message">
-            <p>Jag VABBAR</p>
-        </div>
-        <div class="message">
-            <p>Fast i Trafik</p>
-        </div>
-        <div class="message">
-            <p>Skolkar (hehe)</p>
-        </div>
         <?php 
             require_once($_SERVER['DOCUMENT_ROOT'].'/model/message_handler.php');
             $msg_handler = new MessageHandler();

@@ -48,6 +48,7 @@ class MessageController {
 	}
 
 	function get_saved_messages() {
+		require_once($_SERVER['DOCUMENT_ROOT'].'/model/message_model.php');
 		$user = unserialize($_SESSION['logged_in_user']);
 		$username = $user->get_username();
 		

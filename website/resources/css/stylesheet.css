@@ -117,8 +117,8 @@ main {
 	width: 95%;
 	margin: auto;
 	padding: 5px;
-	background: rgba(135, 135, 135, .7);
-	border-radius: 10px;
+	/* background: rgba(135, 135, 135, .7); */
+	/* border-radius: 10px; */
 	margin-top: 25px;
     overflow: auto;
 }

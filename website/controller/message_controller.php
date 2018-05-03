@@ -53,7 +53,7 @@ class MessageController {
 		$message = $msg_db->get_message_by_id($id);
 
 		require_once($_SERVER['DOCUMENT_ROOT'].'/modelDTO/message_DTO.php');
-		send_message(new MessageDTO($message->get_text(), $message->get_time_to_live()));
+		$this->send_message(new MessageDTO($message->get_text(), $message->get_time_to_live()));
 	}
 
 	function get_saved_messages() {

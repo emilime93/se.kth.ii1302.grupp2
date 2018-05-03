@@ -16,9 +16,11 @@ class MessageHandler {
             $result_string = $result_string . '<p>' . $message->get_text() . '</p>';
             $result_string = $result_string . '<form action="util/post_handler.php" method="POST" class="clearfix">';
             $result_string = $result_string . '<input type="hidden" name="comment-id" value="' . $message->get_ID() . '">';
-            $result_string = $result_string . '<button id="send-saved-button" type="submit" value="send-saved" name="submit">';
             $result_string = $result_string . '<button id="delete-button" type="submit" value="delete-saved" name="submit">';
             $result_string = $result_string . 'Delete';
+            $result_string = $result_string . '</button>';
+            $result_string = $result_string . '<button id="send-saved-button" type="submit" value="send-saved" name="submit">';
+            $result_string = $result_string . 'Send';
             $result_string = $result_string . '</button>';
             $result_string = $result_string . '</form>';
             $result_string = $result_string . '</div>';

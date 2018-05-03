@@ -65,6 +65,14 @@ switch($_POST['submit']) {
 		$MessageController = new MessageController();
 		$MessageController->delete_saved_message($id, $username);
 	break;
+	case "send-saved":
+		$id = $_POST['comment-id'];
+		
+		require_once($_SERVER['DOCUMENT_ROOT'].'/controller/message_controller.php');
+		$MessageController = new MessageController();
+
+		$MessageController->send_saved_message_by_id($id);
+	break;
 	case "send":
 		$text = $_POST['text'];
 		if (isset($_POST['time-to-live'])) {

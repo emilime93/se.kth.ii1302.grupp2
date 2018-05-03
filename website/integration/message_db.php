@@ -29,7 +29,25 @@ class MessageDB {
 		$result = $prepare_stmt->execute();
 		$prepare_stmt->close();
 		return $result;
-    }
+	}
+	
+	function get_message_by_id($id) {
+		$this->connect();
+
+		$prepare_stmt = $this->connection->prepare("SELECT * FROM message WHERE id = ?");
+		$prepare_stmt->bind_param('i', $id);
+		$prepare_stmt->execute();
+
+		$result = $prepare_stmt->get_result();
+		
+		$row = $result->fetch_assoc();
+
+		require_once($_SERVER['DOCUMENT_ROOT']."/model/message_model.php");
+		$msg_model = new MessageModel($row['text'], $row['date'], $row['time_to_live'], $row['id']);
+		$prepare_stmt->close();
+		return $msg_model;
+		
+	}
 	
 	function erase_saved_message($id, $username) {
         $this->connect();

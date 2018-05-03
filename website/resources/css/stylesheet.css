@@ -172,6 +172,14 @@ h1 {
 	float: right;
 }
 
+.message #send-saved-button {
+	background: rgb(114, 245, 88);
+	color: #485341;
+	border: none;
+	border-radius: 5px;
+	float: right;
+}
+
 #save-message-textarea,
 #enter-message-textarea
  {

@@ -8,10 +8,11 @@ class UserDB {
 	private $connection;
 	
 	public function __construct() {
-		$this->HOST = 'localhost';
-		$this->DATABASE = 'digiboard';
-		$this->USER = 'digiboard';
-		$this->PASSWORD = 'WorkVerifyDone';
+		include('~/server_config/login_info.php');
+		$this->HOST = $HOST;
+		$this->DATABASE = $DATABASE;
+		$this->USER = $USER;
+		$this->PASSWORD = $PASSWORD;
 	}
 	
 	public function connect() {

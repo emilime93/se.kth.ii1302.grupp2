@@ -29,7 +29,13 @@ class MessageDB {
 		$result = $prepare_stmt->execute();
 		$prepare_stmt->close();
 		return $result;
-    }
+	}
+	
+	function get_message_by_id($id) {
+		$this->connect();
+
+
+	}
 	
 	function erase_saved_message($id, $username) {
         $this->connect();

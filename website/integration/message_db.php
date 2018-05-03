@@ -41,7 +41,7 @@ class MessageDB {
 		$result = $prepare_stmt->get_result();
 		
 		$row = $result->fetch_assoc();
-		
+
 		require_once($_SERVER['DOCUMENT_ROOT']."/model/message_model.php");
 		$msg_model = new MessageModel($row['text'], $row['date'], $row['time_to_live'], $row['id']);
 		$prepare_stmt->close();

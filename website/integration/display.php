@@ -19,4 +19,12 @@ class Display {
 			return true;
 		}
 	}
+
+	function erase_message() {
+		// TODO
+	}
+
+	function get_message() {
+		// TODO
+	}
 }

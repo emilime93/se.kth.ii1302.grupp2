@@ -16,9 +16,6 @@ class RegistryDTO extends UserDTO {
 		$this->lname = $lname;
 		$this->email = $email;
 	}
-	function get_username() {
-		return $this->username;
-	}
 	function get_password() {
 		return $this->password;
 	}

@@ -15,10 +15,11 @@ class MessageDB {
 		$this->PASSWORD = $PASSWORD;
 	}
 	
-	public function connect() {
+	private function connect() {
         \mysqli_report(MYSQLI_REPORT_ERROR);
 		$this->connection = new \mysqli($this->HOST, $this->USER, $this->PASSWORD, $this->DATABASE);
-    }
+	}
+	
 	public function save_message($message_DTO, $username) {
 		$text = $message_DTO->get_text();
 		
@@ -82,40 +83,5 @@ class MessageDB {
 		}
 		$prepare_stmt->close();
 		return $result_array;
-		/*
-		// FROM STACK OVERFLOW
-		if($stmt = $mysqli->prepare($query)){
-			/*
-				 Binds variables to prepared statement
-		 
-				 i    corresponding variable has type integer
-				 d    corresponding variable has type double
-				 s    corresponding variable has type string
-				 b    corresponding variable is a blob and will be sent in packets
-			$stmt->bind_param('i',$id);
-		 
-			/* execute query 
-			$stmt->execute();
-		 
-			/* Get the result 
-			$result = $stmt->get_result();
-		 
-			/* Get the number of rows 
-			$num_of_rows = $result->num_rows;
-		 
-			while ($row = $result->fetch_assoc()) {
-				 echo 'ID: '.$row['id'].'<br>';
-				 echo 'First Name: '.$row['first_name'].'<br>';
-				 echo 'Last Name: '.$row['last_name'].'<br>';
-				 echo 'Username: '.$row['username'].'<br><br>';
-			}
-
-			*/
-		 
-			/* free results */
-			//$stmt->free_result();
-		 
-			/* close statement */
-			/**************************/
 	}
 }

@@ -3,12 +3,6 @@
 class MessageController {
 	
 	function save_message($MessageDTO) {
-		// // true if the user isn't logged in!
-		// if (!isset($_SESSION['logged_in_user'])) {
-			// 	$_SESSION['save_message_success'] = false;
-			// 	header("Location: /index.php");
-			// }	
-		
 		require_once($_SERVER['DOCUMENT_ROOT'].'/model/user_model.php');
 		$user_model = unserialize($_SESSION['logged_in_user']);
 		$username = $user_model->get_username();
@@ -25,12 +19,6 @@ class MessageController {
 	}
 
 	function delete_saved_message($id, $user) {
-		// true if the user isn't logged in!
-		// if (!isset($_SESSION['logged_in_user'])) {
-		// 	$_SESSION['erase_saved_message_success'] = false;
-		// 	header("Location: /index.php");
-		// }
-		
 		require_once($_SERVER['DOCUMENT_ROOT'].'/model/user_model.php');
 		$username = $user->get_username();
 		

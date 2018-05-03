@@ -15,7 +15,7 @@ class UserDB {
 		$this->PASSWORD = $PASSWORD;
 	}
 	
-	public function connect() {
+	private function connect() {
         \mysqli_report(MYSQLI_REPORT_ERROR);
         $this->connection = new \mysqli($this->HOST, $this->USER, $this->PASSWORD, $this->DATABASE);
     }

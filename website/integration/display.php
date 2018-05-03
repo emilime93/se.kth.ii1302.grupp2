@@ -4,8 +4,9 @@ class Display {
 	private $port;
 	
 	function __construct() {
-		$this->ip = '192.168.0.1';
-		$this->port = '1337';
+		include('~/server_config/login_info.php');
+		$this->ip = $ip;
+		$this->port = $port;
 	}
 	
 	function send_message($MessageDTO) {

@@ -1,25 +1,32 @@
 <?php
-// echo($_POST['username']);
-echo $_SERVER['REQUEST_URI'];
-
-
-if (isset($_POST['login_btn'])) {
-    UserController.register_user();
-    echo("Login");
-} elseif(isset($_POST['register_btn'])) {
-    echo("Register");
-} else {
-    echo("Other");
-}
-
 class UserController {
-    
-    public function register_user() {
-        echo("Register user " . $_POST['username'] . " with password " . $_POST['password']);
-    }
 
-    public function login_user() {
-        echo("Login in user " . $_POST['username'] . " with password " . $_POST['password']);
-    }
+	function create_user($registry_DTO) {
+		require_once($_SERVER['DOCUMENT_ROOT'].'/integration/user_db.php');
+		$UserDB = new UserDB();
+		
+		if($UserDB->create_user($registry_DTO)) {
+			$_SESSION['register_success'] = true;
+		} else {
+			$_SESSION['register_success'] = false;
+		}
+		header("Location: /index.php");
+	}
+	
+	function login_user($user_DTO) {
+		require_once($_SERVER['DOCUMENT_ROOT'].'/integration/user_db.php');
+		$UserDB = new UserDB();
+		
+		if ($result = $UserDB->login_user($user_DTO)) {
+			$_SESSION['logged_in_user'] = serialize($result);
+		} else {
+			$_SESSION['login_failed'] = true;
+		}
+		header("Location: /index.php");
+	}
 
+	function log_out() {
+		unset($_SESSION['logged_in_user']);
+		header('Location: /index.php');
+	}
 }

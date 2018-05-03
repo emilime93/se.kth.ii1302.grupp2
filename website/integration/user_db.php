@@ -8,7 +8,7 @@ class UserDB {
 	private $connection;
 	
 	public function __construct() {
-		include(getenv('HOME') . '/server_config/login_info.php');
+		include($_SERVER['DOCUMENT_ROOT'].'../login_info.php');
 		$this->HOST = $HOST;
 		$this->DATABASE = $DATABASE;
 		$this->USER = $USER;

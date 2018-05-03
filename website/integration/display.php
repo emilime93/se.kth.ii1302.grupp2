@@ -4,7 +4,7 @@ class Display {
 	private $port;
 	
 	function __construct() {
-		include('~/server_config/login_info.php');
+		include($_SERVER['DOCUMENT_ROOT'].'../login_info.php');
 		$this->ip = $ip;
 		$this->port = $port;
 	}

@@ -10,7 +10,7 @@ class Display {
 	}
 	
 	function send_message($messageDTO) {
-		$fp = fsockopen ($this->ip, $this->port, $errno, $errstr); 
+		$fp = fsockopen ($this->ip, $this->port, $errno, $errstr, 3); 
 		if (!$fp) {
 			return false;
 		} else {

@@ -8,7 +8,7 @@ class MessageDB {
 	private $connection;
 	
 	public function __construct() {
-		include(getenv('home') . '/server_config/login_info.php');
+		include(getenv('HOME') . '/server_config/login_info.php');
 		$this->HOST = $HOST;
 		$this->DATABASE = $DATABASE;
 		$this->USER = $USER;

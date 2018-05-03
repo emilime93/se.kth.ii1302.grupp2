@@ -9,7 +9,14 @@ class Display {
 		$this->port = $port;
 	}
 	
-	function send_message($MessageDTO) {
-		return false;
+	function send_message($messageDTO) {
+		$fp = fsockopen ($this->ip, $this->port, $errno, $errstr); 
+		if (!$fp) {
+			return false;
+		} else {
+			fputs($fp, $messageDTO->get_text());
+			fclose($fp);
+			return true;
+		}
 	}
 }

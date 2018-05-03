@@ -41,8 +41,8 @@ switch($_POST['submit']) {
 	*********************/
 	case "save":
 		$text = $_POST['text'];
-		if (isset($_POST['time_to_live'])) {
-			$time_to_live = $_POST['time_to_live'];
+		if (isset($_POST['time-to-live'])) {
+			$time_to_live = $_POST['time-to-live'];
 		} else {
 			$time_to_live = 0;
 		}

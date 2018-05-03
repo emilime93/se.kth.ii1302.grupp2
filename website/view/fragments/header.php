@@ -15,10 +15,28 @@
             </a>
             
             <div id="login-area">
-                <form id="login-form" action="controller/user.php" method="POST">
-                    <input type="text" name="username" placeholder="Username">
-                    <input type="password" name="password" placeholder="Password">
-                    <button type="submit" name="login_btn">Login</button>
-                </form>
+				<?php if (isset($_SESSION['logged_in_user'])) { 
+				
+					require_once($_SERVER['DOCUMENT_ROOT'].'/model/user_model.php');
+					$user_model = unserialize($_SESSION['logged_in_user']);
+					$username = $user_model->get_username();
+					echo  "Logged in as " . $username;
+					echo '<form id="logout_form" action="util/post_handler.php" method="POST">';
+					echo '	<button type="submit" name="submit" value="logout">Log out</button>';
+					echo '</form>';
+					
+				} else { ?>
+				
+					<form id="login-form" action="util/post_handler.php" method="POST">
+						<input type="text" name="username" placeholder="Username">
+						<input type="password" name="password" placeholder="Password">
+						<button type="submit" name="submit" value="login">Login</button>
+					</form>
+					
+					<?php if (isset($_SESSION['login_failed'])) {
+						echo '<p class="error">Login failed!</p>';
+						unset($_SESSION['login_failed']);
+					}
+				} ?>
             </div>
         </header>

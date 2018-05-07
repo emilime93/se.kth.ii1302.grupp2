@@ -90,5 +90,12 @@ class MessageController {
 		}
 		header("Location: /index.php");
 	}
+	
+	function get_display_message() {
+		require_once($_SERVER['DOCUMENT_ROOT'].'/integration/display.php');
+		$display = new Display();
+		require_once($_SERVER['DOCUMENT_ROOT'].'/model/message_model.php');
+		return $display->get_message();
+	}
 
 }

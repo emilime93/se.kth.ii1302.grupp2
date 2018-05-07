@@ -2,7 +2,16 @@
     
     <section id="banner">
         <h2>Currently displayed Message</h2>
-        <p>Hej hej monika hej på dig monika!</p>
+		<?php
+			require_once($_SERVER['DOCUMENT_ROOT'].'/controller/message_controller.php');
+            $msg_controller = new MessageController();
+			$result = $msg_controller->get_display_message();
+			if ($result) {
+				echo "<p>" . $result->get_text() . "</p>";
+			} else {	// no message displayed atm
+				echo "<p>No current message!</p>";
+			}
+		?>
     </section>
 
     <section>

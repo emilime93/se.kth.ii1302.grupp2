@@ -29,9 +29,20 @@
     <section>
         <h2>Saved Messages</h2>
         <?php 
+            if(isset($_SESSION['send_saved_message_success'])) {
+                if($_SESSION['send_saved_message_success']) {
+                    echo '<p class="success">Message successfully sent!</p>';
+                    unset($_SESSION['send_saved_message_success']);
+                } else {
+                    echo '<p class="error">Error sending message.</p>';
+                    unset($_SESSION['send_saved_message_success']);
+                }
+            }
+            
             require_once($_SERVER['DOCUMENT_ROOT'].'/model/message_handler.php');
             $msg_handler = new MessageHandler();
             echo($msg_handler->print_saved_messages());
+
         ?>
         <textarea placeholder="Enter message to save" form="save-message-form" name="text" id="save-message-textarea" cols="30" rows="10"></textarea>
         <form id="save-message-form" action="util/post_handler.php" method="POST">
@@ -39,6 +50,10 @@
 			<button type="submit" name="submit" value="save">Save message</button>
         </form>
         <?php
+            if(isset($_SESSION['message_length_error'])) {
+                echo '<p class="error">'.$_SESSION['message_length_error'].'</p>';
+                unset($_SESSION['message_length_error']);
+            }
             if(isset($_SESSION['save_message_success'])) {
                 if($_SESSION['save_message_success']) {
                     echo '<p class="success">Message successfully saved!</p>';

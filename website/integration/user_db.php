@@ -56,7 +56,6 @@ class UserDB {
 			$prepare_stmt->close();
 			return $result;
 		} else {
-			$prepare_stmt->close();
 			return false;
 		}
     }

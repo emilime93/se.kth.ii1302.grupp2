@@ -11,6 +11,9 @@ class MessageDTO {
 	function get_text() {
 		return $this->text;
 	}
+	function set_text($text) {
+		$this->text = $text;
+	}
 	function get_time_to_live() {
 		return $this->time_to_live;
 	}

@@ -22,6 +22,6 @@ class MessageModel {
 		return $this->fname;
 	}
 	function get_time_to_live() {
-		return $this->lname;
+		return $this->time_to_live;
 	}
 }

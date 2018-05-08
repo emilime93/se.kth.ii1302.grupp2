@@ -57,7 +57,10 @@ class MessageController {
 		require_once($_SERVER['DOCUMENT_ROOT'].'/integration/display.php');
 		$display = new Display();
 
-		if($display->send_message($messageDTO)) {
+		require_once($_SERVER['DOCUMENT_ROOT'].'/model/user_model.php');
+		$user = unserialize($_SESSION['logged_in_user']);
+		$username = $user->get_username();
+		if($display->send_message($messageDTO, $username)) {
 			$_SESSION['send_saved_message_success'] = true;
 		} else {
 			$_SESSION['send_saved_message_success'] = false;

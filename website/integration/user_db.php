@@ -32,10 +32,10 @@ class UserDB {
         if($prepare_stmt->fetch() && \password_verify($password, $result_password)) {
 			require_once($_SERVER['DOCUMENT_ROOT'].'/model/user_model.php');
 			$user_model = new UserModel($result_username, $result_fname, $result_lname, $result_email);
-			$prepare_stmt->execute();
+			$prepare_stmt->close();
             return $user_model;
         } else {
-			$prepare_stmt->execute();
+			$prepare_stmt->close();
             return false;
         }
     }

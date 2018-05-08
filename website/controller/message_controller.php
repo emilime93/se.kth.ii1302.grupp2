@@ -82,13 +82,24 @@ class MessageController {
 		// Clean the input
 		$messageDTO->set_text(strip_tags($messageDTO->get_text()));
 		$messageDTO->set_text(htmlspecialchars($messageDTO->get_text()));
+		
+		require_once($_SERVER['DOCUMENT_ROOT'].'/model/user_model.php');
+		$user_model = unserialize($_SESSION['logged_in_user']);
+		$username = $user_model->get_username();
 
-		if($display->send_message($messageDTO)) {
+		if($display->send_message($messageDTO, $username)) {
 			$_SESSION['send_message_success'] = true;
 		} else {
 			$_SESSION['send_message_success'] = false;
 		}
 		header("Location: /index.php");
+	}
+	
+	function get_display_message() {
+		require_once($_SERVER['DOCUMENT_ROOT'].'/integration/display.php');
+		$display = new Display();
+		require_once($_SERVER['DOCUMENT_ROOT'].'/model/message_model.php');
+		return $display->get_message();
 	}
 
 }

@@ -1,6 +1,10 @@
 <?php
 
 class MessageDTO {
+	/**
+	 * Simaple Data Transfer Object for a message.
+	 * Contains the message text and Time To Live.
+	 */
 	private $text;
 	private $time_to_live;
 	

@@ -47,7 +47,7 @@ class Display {
 		$text = $messageDTO->get_text();
 		$time_to_live = $messageDTO->get_time_to_live();
 		
-		$message = "w" . str_pad(strval(), 5, "0", STR_PAD_LEFT) . $text;
+		$message = "w" . str_pad(strval($time_to_live), 5, "0", STR_PAD_LEFT) . $text;
 		return $message;
 	}
 	
@@ -101,8 +101,8 @@ class Display {
 
 		$prepare_stmt->execute();
         $prepare_stmt->bind_result($result_text, $result_date, $result_time_to_live, $result_id);
-		$result_time_to_live_seconds = $result_time_to_live * 60;
 		if($prepare_stmt->fetch()) {
+			$result_time_to_live_seconds = $result_time_to_live * 60;
 			$prepare_stmt->close();
 			if ($result_time_to_live == 0) {
 				$message_DTO = new MessageDTO($result_text, $result_time_to_live);
@@ -115,7 +115,7 @@ class Display {
 			return false;	// old message
         } else {			// no message
 			$prepare_stmt->close();
-            return false;
+			return false;
         }
 	}
 	/*

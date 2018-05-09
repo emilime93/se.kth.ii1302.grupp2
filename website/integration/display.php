@@ -31,15 +31,24 @@ class Display {
 	 * @return boolean Returns true if it was able to send the message, otherwise false.
 	 */
 	function send_message($messageDTO, $username) {
-		$fp = fsockopen ($this->ip, $this->port, $errno, $errstr, 3); 
+		$fp = fsockopen ($this->ip, $this->port, $errno, $errstr, 3);
+		$message_to_display = $this->write_to_display_format($messageDTO);
 		if (!$fp) {
 			return false;
 		} else {
-			fputs($fp, $messageDTO->get_text());
+			fputs($fp, $message_to_display);
 			fclose($fp);
 			$this->set_display_db($messageDTO, $username);	// ignores true/false from set_display_db
 			return true;
 		}
+	}
+	
+	private function write_to_display_format($messageDTO) {
+		$text = $messageDTO->get_text();
+		$time_to_live = $messageDTO->get_time_to_live();
+		
+		$message = "w" . str_pad(strval(), 5, "0", STR_PAD_LEFT) . $text;
+		return $message;
 	}
 	
 	/**
@@ -61,14 +70,30 @@ class Display {
 
 	/**
 	 * Asks the display to erase the currently displayed message, and removes/updates the entry in DB.
+	 *
+	 * @return boolean TRUE if the deletion went through and FALSE if it failed
 	 */
 	function erase_message() {
-		// TODO
+		$this->connect();
+        $prepare_stmt = $this->connection->prepare("DELETE FROM display");
+        return $prepare_stmt->execute();
 	}
-
+	/*
+	function erase_message() {
+		$fp = fsockopen ($this->ip, $this->port, $errno, $errstr, 3);
+		if (!$fp) {
+			return false;
+		} else {
+			fputs($fp, "c");
+			fclose($fp);
+			return true;
+		}
+	}
+	*/
+	
 	/**
 	 * Gets the latest message from the database (from the display in the future).
-	 * @return MessageModel/boolean Returns a message to be displayed if there's an eligable one. Otherwise returns false.
+	 * @return MessageDTO/boolean Returns a message to be displayed if there's an eligable one. Otherwise returns false.
 	 */
 	function get_message() {
 		$this->connect();
@@ -80,12 +105,12 @@ class Display {
 		if($prepare_stmt->fetch()) {
 			$prepare_stmt->close();
 			if ($result_time_to_live == 0) {
-				$message_model = new MessageModel($result_text, $result_date, $result_time_to_live, $result_id);
-				return $message_model;
+				$message_DTO = new MessageDTO($result_text, $result_time_to_live);
+				return $message_DTO;
 			}
 			if ((time() - ($result_date + $result_time_to_live_seconds)) < 0) {
-				$message_model = new MessageModel($result_text, $result_date, $result_time_to_live, $result_id);
-				return $message_model;
+				$message_DTO = new MessageDTO($result_text, $result_time_to_live);
+				return $message_DTO;
 			}
 			return false;	// old message
         } else {			// no message
@@ -93,5 +118,23 @@ class Display {
             return false;
         }
 	}
+	/*
+	function get_message() {
+		$socket = socket_create(AF_INET, SOCK_STREAM, 0) or die("Could not create socket\n");
+		$result = socket_connect($socket, $this->ip, $this->port) or die("Could not connect to server\n");
+		
+		$message = "r";
+		socket_write($socket, $message, strlen($message)) or die("Could not send data to server\n");
+
+		stream_set_timeout($socket, 3);
+		$result = socket_read ($socket, 1024) or die("Could not read server response\n");
+		socket_close($socket);
+		$result_text = substr($result, 5);
+		$result_time_to_live = substr($result, 0, 5);
+		
+		$message_DTO = new MessageDTO($result_text, $result_time_to_live);
+		return $message_DTO;
+	}
+	*/
 	
 }

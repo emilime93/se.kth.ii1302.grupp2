@@ -18,7 +18,7 @@
         <h2>Enter Message</h2>
         <textarea placeholder="Message to display" form="enter-message-form" id="enter-message-textarea" name="text" cols="30" rows="10"></textarea>
         <form id="enter-message-form" action="util/post_handler.php" method="POST">
-			<input type="text" class="ttl" name="time-to-live" placeholder="Time to live (minutes)">
+			<input type="text" class="ttl-input" name="time-to-live" placeholder="Time to live (minutes)">
 			<button type="submit" name="submit" value="send">Send message</button>
         </form>
         <?php
@@ -55,7 +55,7 @@
         ?>
         <textarea placeholder="Enter message to save" form="save-message-form" name="text" id="save-message-textarea" cols="30" rows="10"></textarea>
         <form id="save-message-form" action="util/post_handler.php" method="POST">
-			<input type="text" class="ttl" name="time-to-live" placeholder="Time to live (minutes)">
+			<input type="text" class="ttl-input" name="time-to-live" placeholder="Time to live (minutes)">
 			<button type="submit" name="submit" value="save">Save message</button>
         </form>
         <?php

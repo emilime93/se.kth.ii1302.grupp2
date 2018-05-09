@@ -109,7 +109,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  static uint8_t c1[]="AT\r\n";
+  static uint8_t c1[]="AT+S.WIFI=0\r\n";
   static uint8_t c2[40];
 //  sprintf(c1,"AT+S.SCFG=console_echo,0\r\n");
   static uint8_t k = 0;

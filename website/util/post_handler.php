@@ -45,9 +45,14 @@ switch($_POST['submit']) {
 	* MESSAGE HANDLING	*
 	*********************/
 	case "save":
+		$max_ttl = 99999;
 		$text = $_POST['text'];
 		if (isset($_POST['time-to-live'])) {
-			$time_to_live = $_POST['time-to-live'];
+			if ($_POST['time-to-live'] > $max_ttl) {
+				$time_to_live = $max_ttl;
+			} else  {
+				$time_to_live = $_POST['time-to-live'];
+			}
 		} else {
 			$time_to_live = 0;
 		}
@@ -63,9 +68,6 @@ switch($_POST['submit']) {
 		require_once($_SERVER['DOCUMENT_ROOT'].'/model/user_model.php');
 		$username = unserialize($_SESSION['logged_in_user']);
 		
-		require_once($_SERVER['DOCUMENT_ROOT'].'/modelDTO/message_DTO.php');
-		$MessageDTO = new MessageDTO($text, $time_to_live);
-		
 		require_once($_SERVER['DOCUMENT_ROOT'].'/controller/message_controller.php');
 		$MessageController = new MessageController();
 		$MessageController->delete_saved_message($id, $username);
@@ -78,10 +80,21 @@ switch($_POST['submit']) {
 
 		$MessageController->send_saved_message_by_id($id);
 	break;
+	case "clear-display":
+		require_once($_SERVER['DOCUMENT_ROOT'].'/integration/display.php');
+		$display = new Display();
+		$display->erase_message();
+		header("Location: /index.php");
+	break;
 	case "send":
+		$max_ttl = 99999;
 		$text = $_POST['text'];
 		if (isset($_POST['time-to-live'])) {
-			$time_to_live = $_POST['time-to-live'];
+			if ($_POST['time-to-live'] > $max_ttl) {
+				$time_to_live = $max_ttl;
+			} else  {
+				$time_to_live = $_POST['time-to-live'];
+			}
 		} else {
 			$time_to_live = 0;
 		}

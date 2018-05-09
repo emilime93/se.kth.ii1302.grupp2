@@ -130,12 +130,12 @@ class MessageController {
 	/*
 	* Returns the message from the display(or display DB)
 	*
-	* @return MessageModel	the message displayed.
+	* @return MessageDTO	the message displayed.
 	*/
 	function get_display_message() {
 		require_once($_SERVER['DOCUMENT_ROOT'].'/integration/display.php');
 		$display = new Display();
-		require_once($_SERVER['DOCUMENT_ROOT'].'/model/message_model.php');
+		require_once($_SERVER['DOCUMENT_ROOT'].'/modelDTO/message_DTO.php');
 		return $display->get_message();
 	}
 

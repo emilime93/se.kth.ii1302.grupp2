@@ -50,13 +50,14 @@ class Display {
 
 		$prepare_stmt->execute();
         $prepare_stmt->bind_result($result_text, $result_date, $result_time_to_live, $result_id);
+		$result_time_to_live_seconds = $result_time_to_live * 60;
 		if($prepare_stmt->fetch()) {
 			$prepare_stmt->close();
 			if ($result_time_to_live == 0) {
 				$message_model = new MessageModel($result_text, $result_date, $result_time_to_live, $result_id);
 				return $message_model;
 			}
-			if ((time() - ($result_date + $result_time_to_live)) < 0) {
+			if ((time() - ($result_date + $result_time_to_live_seconds)) < 0) {
 				$message_model = new MessageModel($result_text, $result_date, $result_time_to_live, $result_id);
 				return $message_model;
 			}

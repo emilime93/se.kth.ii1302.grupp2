@@ -45,6 +45,10 @@
 
 /* USER CODE BEGIN Includes */
 #include "displayMethods.h"
+#include "stdint.h"
+#include "string.h"
+#include "stdio.h"
+#include "math.h"
 
 /* USER CODE END Includes */
 
@@ -99,40 +103,29 @@ int main(void)
 
   /* USER CODE BEGIN 2 */
   displayInit();
-  static uint8_t buffer[100];
   /* Wait for the end of the transfer*/    
   
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  static uint32_t i = 0;
-  
-//  if (HAL_UART_Transmit(&huart1, "AT+S.STS\r\n", 10, 5000) != HAL_OK) {
-//    printf("error transmit");
-//  }
-  /*
-    Skriv kommando initiering för ip, socket
+  static uint8_t c1[]="AT\r\n";
+  static uint8_t c2[40];
+//  sprintf(c1,"AT+S.SCFG=console_echo,0\r\n");
+  static uint8_t k = 0;
+  if (HAL_UART_Transmit(&huart1, (uint8_t *)c1, strlen(c1), 5000) != HAL_OK) {
+    k=1;
+    printf("\r\n I am trying to transmit this shit");
+  }
 
-    varje gång mna ska öppna medelande, använd socket kommando
-skicka samma skit
-
-
-*/
+  if(HAL_UART_Receive(&huart1, (uint8_t *)c2,40,5000)!=HAL_OK){
+    printf("error");
+  }
+  printf("done");  
   
   while (1)
   { 
-    //Wait for the user to input time
-    if (HAL_UART_Receive(&huart1, (uint8_t *)&buffer[i], 1, 5000) != HAL_OK) {
-      printf("error");
-    }
-    else {
-      i += 1;
       
-      if (i > sizeof(buffer) - 1)
-        i = 0;
-    }
-    
     
   /* USER CODE END WHILE */
 
@@ -154,9 +147,9 @@ void SystemClock_Config(void)
 
     /**Initializes the CPU, AHB and APB busses clocks 
     */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
-  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  RCC_OscInitStruct.HSICalibrationValue = 16;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
@@ -167,7 +160,7 @@ void SystemClock_Config(void)
     */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSE;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;

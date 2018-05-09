@@ -1,8 +1,10 @@
 <?php
 class MessageHandler {
 
-    /**
+    /*
      * This returns a HTML string of all messages
+	 *
+	 * @return String html code containing the saved messages to be printed 
      */
     function print_saved_messages() {
         require_once($_SERVER['DOCUMENT_ROOT'] . "/controller/message_controller.php");

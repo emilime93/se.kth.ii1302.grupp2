@@ -1,7 +1,12 @@
 <?php
 
 class MessageController {
-	
+	/*
+	* Saves a message in the database. Sets $_SESSION['save_message_success'] to either TRUE or FALSE
+	* to indicate the success of saving the message.
+	*
+	* @param MessageDTO	$messageDTO the message to be saved
+	*/
 	function save_message($messageDTO) {
 		$max_length = 40;
 		if(strlen($messageDTO->get_text()) < 1 || strlen($messageDTO->get_text()) > $max_length) {
@@ -29,6 +34,13 @@ class MessageController {
 		header("Location: /index.php");
 	}
 
+	/*
+	* Deletes a saved message from the database. Sets $_SESSION['erase_saved_message_success'] to either TRUE or FALSE
+	* to indicate the success of deleting the message.
+	*
+	* @param int 		$id the id of the message that is to be deleted
+	* @param UserModel 	$user the user that is trying to delete the message
+	*/
 	function delete_saved_message($id, $user) {
 		require_once($_SERVER['DOCUMENT_ROOT'].'/model/user_model.php');
 		$username = $user->get_username();
@@ -44,6 +56,12 @@ class MessageController {
 		header("Location: /index.php");
 	}
 
+	/*
+	* Send a message saved in the database to the display. Sets $_SESSION['send_saved_message_success'] to either TRUE or FALSE
+	* to indicate the success of sending the message.
+	*
+	* @param int 	$id the id of the message that is to be sent
+	*/
 	function send_saved_message_by_id($id) {
 		require_once($_SERVER['DOCUMENT_ROOT'].'/integration/message_db.php');
 		$msg_db = new MessageDB();
@@ -68,6 +86,11 @@ class MessageController {
 		header("Location: /index.php");
 	}
 
+	/*
+	* Returns the saved messaged from the database.
+	*
+	* @return MessageModel[]	 an array of the messages savsed in the database.
+	*/
 	function get_saved_messages() {
 		require_once($_SERVER['DOCUMENT_ROOT'].'/model/message_model.php');
 		$user = unserialize($_SESSION['logged_in_user']);
@@ -78,6 +101,12 @@ class MessageController {
 		return $msg_db->get_saved_messages($username);
 	}
 	
+	/*
+	* Sends a message to the display. Sets $_SESSION['send_message_success'] to either TRUE or FALSE
+	* to indicate the success of sending the message.
+	*
+	* @param MessageDTO 	$messageDTO the message to be sent to the display
+	*/
 	function send_message($messageDTO) {
 		require_once($_SERVER['DOCUMENT_ROOT'].'/integration/display.php');
 		$display = new Display();
@@ -98,6 +127,11 @@ class MessageController {
 		header("Location: /index.php");
 	}
 	
+	/*
+	* Returns the message from the display(or display DB)
+	*
+	* @return MessageModel	the message displayed.
+	*/
 	function get_display_message() {
 		require_once($_SERVER['DOCUMENT_ROOT'].'/integration/display.php');
 		$display = new Display();

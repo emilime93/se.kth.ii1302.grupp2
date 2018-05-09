@@ -10,7 +10,7 @@ class MessageController {
 	function save_message($messageDTO) {
 		$max_length = 40;
 		if(strlen($messageDTO->get_text()) < 1 || strlen($messageDTO->get_text()) > $max_length) {
-			$_SESSION['message_length_error'] = "The message should be at least 1 character and at most " . $max_length . " characters long.";
+			$_SESSION['save_message_length_error'] = "The message should be at least 1 character and at most " . $max_length . " characters long.";
 			header("Location: /index.php");
 			die();
 		}
@@ -108,6 +108,12 @@ class MessageController {
 	* @param MessageDTO 	$messageDTO the message to be sent to the display
 	*/
 	function send_message($messageDTO) {
+		$max_length = 40;
+		if(strlen($messageDTO->get_text()) < 1 || strlen($messageDTO->get_text()) > $max_length) {
+			$_SESSION['send_message_length_error'] = "The message should be at least 1 character and at most " . $max_length . " characters long.";
+			header("Location: /index.php");
+			die();
+		}
 		require_once($_SERVER['DOCUMENT_ROOT'].'/integration/display.php');
 		$display = new Display();
 

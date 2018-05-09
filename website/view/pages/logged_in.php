@@ -22,6 +22,10 @@
 			<button type="submit" name="submit" value="send">Send message</button>
         </form>
         <?php
+            if(isset($_SESSION['send_message_length_error'])) {
+                echo '<p class="error">'.$_SESSION['send_message_length_error'].'</p>';
+                unset($_SESSION['send_message_length_error']);
+            }
             if(isset($_SESSION['send_message_success'])) {
                 if($_SESSION['send_message_success']) {
                     echo '<p class="success">Message successfully sent!</p>';
@@ -59,9 +63,9 @@
 			<button type="submit" name="submit" value="save">Save message</button>
         </form>
         <?php
-            if(isset($_SESSION['message_length_error'])) {
-                echo '<p class="error">'.$_SESSION['message_length_error'].'</p>';
-                unset($_SESSION['message_length_error']);
+            if(isset($_SESSION['save_message_length_error'])) {
+                echo '<p class="error">'.$_SESSION['save_message_length_error'].'</p>';
+                unset($_SESSION['save_message_length_error']);
             }
             if(isset($_SESSION['save_message_success'])) {
                 if($_SESSION['save_message_success']) {

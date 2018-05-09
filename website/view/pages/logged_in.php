@@ -9,7 +9,7 @@
 			if ($result) {
 				echo "<p>" . $result->get_text() . "</p>";
 			} else {	// no message displayed atm
-				echo "<p>No current message!</p>";
+				echo "<p>Currently no message displayed!</p>";
 			}
 		?>
     </section>

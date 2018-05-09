@@ -3,12 +3,20 @@ class Display {
 	private $ip;
 	private $port;
 	
+	/**
+	 * This sets up the display port and ip address from a login_info.php file,
+	 * which must lie one level above the server.
+	 */
 	function __construct() {
 		include($_SERVER['DOCUMENT_ROOT'].'/../login_info.php');
 		$this->ip = $ip;
 		$this->port = $port;
 	}
 	
+	/**
+	 * Helper method for connecting to the database for saving the latest message
+	 * to be displayed.
+	 */
 	private function connect() {
 		include($_SERVER['DOCUMENT_ROOT'].'/../login_info.php');
 	
@@ -16,6 +24,12 @@ class Display {
 		$this->connection = new \mysqli($HOST, $USER, $PASSWORD, $DATABASE);
 	}
 	
+	/**
+	 * Sends a message to the disaplay and DB.
+	 * @param MessageDTO $messageDTO The message to be sent
+	 * @param string $username The authors username
+	 * @return boolean Returns true if it was able to send the message, otherwise false.
+	 */
 	function send_message($messageDTO, $username) {
 		$fp = fsockopen ($this->ip, $this->port, $errno, $errstr, 3); 
 		if (!$fp) {
@@ -28,6 +42,11 @@ class Display {
 		}
 	}
 	
+	/**
+	 * @param MessageDTO $messageDTO The message to be set in DB
+	 * @param string $username The authors username
+	 * @return boolean Returns true if it was able to save to the database, otherwise if returns false.
+	 */
 	private function set_display_db($messageDTO, $username) {
 		$text = $messageDTO->get_text();
 		
@@ -40,10 +59,17 @@ class Display {
 		return $result;
 	}
 
+	/**
+	 * Asks the display to erase the currently displayed message, and removes/updates the entry in DB.
+	 */
 	function erase_message() {
 		// TODO
 	}
 
+	/**
+	 * Gets the latest message from the database (from the display in the future).
+	 * @return MessageModel/boolean Returns a message to be displayed if there's an eligable one. Otherwise returns false.
+	 */
 	function get_message() {
 		$this->connect();
 		$prepare_stmt = $this->connection->prepare("SELECT text, UNIX_TIMESTAMP(date), time_to_live, id FROM display ORDER BY date DESC");

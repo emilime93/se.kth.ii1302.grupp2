@@ -1,6 +1,11 @@
 <?php
 session_start();
 
+/**
+ * This handles all post requests from the user. It creates necesary DTOs and calls the propper controller method.
+ * If the post request was faulty, it redirects the user to index.php.
+ */
+
 switch($_POST['submit']) {
 	
 	/********************

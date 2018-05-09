@@ -1,6 +1,12 @@
 <?php
 
 class UserDTO {
+	/**
+	 * User Data Transfer Object.
+	 * Contains:
+	 * username
+	 * password
+	 */
 	private $username;
 	private $password;
 	

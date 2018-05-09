@@ -12,8 +12,13 @@ class MessageHandler {
 
         $result_string = "";
         foreach($messages as $message) {
-            $result_string = $result_string . '<div class="message">';
+            $result_string = $result_string . '<div class="message clearfix">';
             $result_string = $result_string . '<p>' . $message->get_text() . '</p>';
+            $result_string = $result_string . '<div class="ttl">';
+            // $result_string = $result_string . '<img src="'.$_SERVER['DOCUMENT_ROOT'].'/resources/img/clock.jpg'.'" alt="A clock to indicate time to live value" />';
+            $result_string = $result_string . '<img src="'.'/Applications/MAMP/htdocs/resources/img/clock.jpg'.'" alt="A clock to indicate time to live value" />';
+            $result_string = $result_string . '<span class="ttl-val">'.$message->get_time_to_live().' min</span>';
+            $result_string = $result_string . '</div>';
             $result_string = $result_string . '<form action="util/post_handler.php" method="POST" class="clearfix">';
             $result_string = $result_string . '<input type="hidden" name="comment-id" value="' . $message->get_ID() . '">';
             $result_string = $result_string . '<button id="delete-button" type="submit" value="delete-saved" name="submit">';

@@ -164,6 +164,19 @@ h1 {
 	margin: 25px 0 25px 0;
 }
 
+.ttl {
+	float: left;
+}
+.ttl img {
+	width: 10px;
+	height: 10px;
+	display: inline-block;
+}
+.ttl-val {
+	font-style: italic;
+	font-weight: bold;
+}
+
 .message #delete-button {
 	background: #f00;
 	color: #e9bbbb;

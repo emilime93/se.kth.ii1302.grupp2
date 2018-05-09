@@ -167,9 +167,12 @@ h1 {
 .ttl {
 	float: left;
 }
+.ttl .infin {
+	font-size: 1.5em;
+}
 .ttl img {
-	width: 10px;
-	height: 10px;
+	width: 14px;
+	height: 14px;
 	display: inline-block;
 }
 .ttl-val {

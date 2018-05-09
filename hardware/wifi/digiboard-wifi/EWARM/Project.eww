@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workspace>
-  <project>
-    <path>$WS_DIR$\digiboard-wifi.ewp</path>
-  </project>
-  <batchBuild />
+    <project>
+        <path>$WS_DIR$\digiboard-wifi.ewp</path>
+    </project>
+    <project>
+        <path>$WS_DIR$\..\test-wifi\test.ewp</path>
+    </project>
+    <batchBuild />
 </workspace>

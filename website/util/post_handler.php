@@ -80,6 +80,12 @@ switch($_POST['submit']) {
 
 		$MessageController->send_saved_message_by_id($id);
 	break;
+	case "clear-display":
+		require_once($_SERVER['DOCUMENT_ROOT'].'/integration/display.php');
+		$display = new Display();
+		$display->erase_message();
+		header("Location: /index.php");
+	break;
 	case "send":
 		$max_ttl = 99999;
 		$text = $_POST['text'];

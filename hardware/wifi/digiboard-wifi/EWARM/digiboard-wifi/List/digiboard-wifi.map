@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR ELF Linker V8.20.2.14835/W32 for ARM                09/May/2018  15:59:09
+# IAR ELF Linker V8.20.2.14835/W32 for ARM                11/May/2018  11:49:06
 # Copyright 2007-2017 IAR Systems AB.
 #
 #    Output file  =  
@@ -8,7 +8,7 @@
 #    Map file     =  
 #        C:\Users\Elias\Desktop\II1302\se.kth.ii1302.grupp2\hardware\wifi\digiboard-wifi\EWARM\digiboard-wifi\List\digiboard-wifi.map
 #    Command line =  
-#        -f C:\Users\Elias\AppData\Local\Temp\EWA48C.tmp
+#        -f C:\Users\Elias\AppData\Local\Temp\EW8FC2.tmp
 #        (C:\Users\Elias\Desktop\II1302\se.kth.ii1302.grupp2\hardware\wifi\digiboard-wifi\EWARM\digiboard-wifi\Obj\displayMethods.o
 #        C:\Users\Elias\Desktop\II1302\se.kth.ii1302.grupp2\hardware\wifi\digiboard-wifi\EWARM\digiboard-wifi\Obj\gpio.o
 #        C:\Users\Elias\Desktop\II1302\se.kth.ii1302.grupp2\hardware\wifi\digiboard-wifi\EWARM\digiboard-wifi\Obj\main.o

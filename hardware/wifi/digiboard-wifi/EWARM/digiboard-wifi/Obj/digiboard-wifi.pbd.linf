@@ -3,6 +3,10 @@ C:\Users\Elias\Desktop\II1302\se.kth.ii1302.grupp2\hardware\wifi\digiboard-wifi\
 C:\Users\Elias\Desktop\II1302\se.kth.ii1302.grupp2\hardware\wifi\digiboard-wifi\EWARM\digiboard-wifi\Obj\gpio.pbi
 C:\Users\Elias\Desktop\II1302\se.kth.ii1302.grupp2\hardware\wifi\digiboard-wifi\EWARM\digiboard-wifi\Obj\main.pbi
 C:\Users\Elias\Desktop\II1302\se.kth.ii1302.grupp2\hardware\wifi\digiboard-wifi\EWARM\digiboard-wifi\Obj\spi.pbi
+C:\Users\Elias\Desktop\II1302\se.kth.ii1302.grupp2\hardware\wifi\digiboard-wifi\EWARM\digiboard-wifi\Obj\stm32f3xx_hal_msp.pbi
+C:\Users\Elias\Desktop\II1302\se.kth.ii1302.grupp2\hardware\wifi\digiboard-wifi\EWARM\digiboard-wifi\Obj\stm32f3xx_it.pbi
+C:\Users\Elias\Desktop\II1302\se.kth.ii1302.grupp2\hardware\wifi\digiboard-wifi\EWARM\digiboard-wifi\Obj\usart.pbi
+C:\Users\Elias\Desktop\II1302\se.kth.ii1302.grupp2\hardware\wifi\digiboard-wifi\EWARM\digiboard-wifi\Obj\system_stm32f3xx.pbi
 C:\Users\Elias\Desktop\II1302\se.kth.ii1302.grupp2\hardware\wifi\digiboard-wifi\EWARM\digiboard-wifi\Obj\stm32f3xx_hal.pbi
 C:\Users\Elias\Desktop\II1302\se.kth.ii1302.grupp2\hardware\wifi\digiboard-wifi\EWARM\digiboard-wifi\Obj\stm32f3xx_hal_cortex.pbi
 C:\Users\Elias\Desktop\II1302\se.kth.ii1302.grupp2\hardware\wifi\digiboard-wifi\EWARM\digiboard-wifi\Obj\stm32f3xx_hal_dma.pbi
@@ -11,7 +15,6 @@ C:\Users\Elias\Desktop\II1302\se.kth.ii1302.grupp2\hardware\wifi\digiboard-wifi\
 C:\Users\Elias\Desktop\II1302\se.kth.ii1302.grupp2\hardware\wifi\digiboard-wifi\EWARM\digiboard-wifi\Obj\stm32f3xx_hal_gpio.pbi
 C:\Users\Elias\Desktop\II1302\se.kth.ii1302.grupp2\hardware\wifi\digiboard-wifi\EWARM\digiboard-wifi\Obj\stm32f3xx_hal_i2c.pbi
 C:\Users\Elias\Desktop\II1302\se.kth.ii1302.grupp2\hardware\wifi\digiboard-wifi\EWARM\digiboard-wifi\Obj\stm32f3xx_hal_i2c_ex.pbi
-C:\Users\Elias\Desktop\II1302\se.kth.ii1302.grupp2\hardware\wifi\digiboard-wifi\EWARM\digiboard-wifi\Obj\stm32f3xx_hal_msp.pbi
 C:\Users\Elias\Desktop\II1302\se.kth.ii1302.grupp2\hardware\wifi\digiboard-wifi\EWARM\digiboard-wifi\Obj\stm32f3xx_hal_pwr.pbi
 C:\Users\Elias\Desktop\II1302\se.kth.ii1302.grupp2\hardware\wifi\digiboard-wifi\EWARM\digiboard-wifi\Obj\stm32f3xx_hal_pwr_ex.pbi
 C:\Users\Elias\Desktop\II1302\se.kth.ii1302.grupp2\hardware\wifi\digiboard-wifi\EWARM\digiboard-wifi\Obj\stm32f3xx_hal_rcc.pbi
@@ -22,6 +25,3 @@ C:\Users\Elias\Desktop\II1302\se.kth.ii1302.grupp2\hardware\wifi\digiboard-wifi\
 C:\Users\Elias\Desktop\II1302\se.kth.ii1302.grupp2\hardware\wifi\digiboard-wifi\EWARM\digiboard-wifi\Obj\stm32f3xx_hal_tim_ex.pbi
 C:\Users\Elias\Desktop\II1302\se.kth.ii1302.grupp2\hardware\wifi\digiboard-wifi\EWARM\digiboard-wifi\Obj\stm32f3xx_hal_uart.pbi
 C:\Users\Elias\Desktop\II1302\se.kth.ii1302.grupp2\hardware\wifi\digiboard-wifi\EWARM\digiboard-wifi\Obj\stm32f3xx_hal_uart_ex.pbi
-C:\Users\Elias\Desktop\II1302\se.kth.ii1302.grupp2\hardware\wifi\digiboard-wifi\EWARM\digiboard-wifi\Obj\stm32f3xx_it.pbi
-C:\Users\Elias\Desktop\II1302\se.kth.ii1302.grupp2\hardware\wifi\digiboard-wifi\EWARM\digiboard-wifi\Obj\system_stm32f3xx.pbi
-C:\Users\Elias\Desktop\II1302\se.kth.ii1302.grupp2\hardware\wifi\digiboard-wifi\EWARM\digiboard-wifi\Obj\usart.pbi

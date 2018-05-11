@@ -9,24 +9,7 @@
 //#include "usart.h"
 //#include "gpio.h"
 //#include "initWifi.h"
-//void tranRecWifi(char *commandBuffer){
-//  if (HAL_UART_Transmit(&huart1, (uint8_t *)&commandBuffer, strlen(commandBuffer), 5000) != HAL_OK) {
-//      printf("\r\nerrorRec");
-//    }
-//    static char buffer[50];
-//  int i = 0;
-//  while(i <  sizeof(buffer)){
-//    if (HAL_UART_Receive(&huart1, (uint8_t *)&buffer[i], 1, 5000) != HAL_OK) {
-//      printf("\r\nerrorRec");
-//    }
-//    if(buffer[i] == '\n'){
-//      break;
-//    }
-//    i++;
-//  }
-//  printf("Command OK");
-//}
-//
+
 ////void setupWifi(){
 ////  static char commandBuffer[11][40];
 ////  sprintf(commandBuffer[0], "AT+S.WIFI=0\r\n");
@@ -50,3 +33,23 @@
 //////    }
 ////  }
 ////}
+
+#include "main.h"
+#include "stdint.h"
+#include "stdio.h"
+#include "initWifi.h"
+#include "usart.h"
+
+void transmitWifi(char* commandBuffer){
+  if (HAL_UART_Transmit(&huart1, (uint8_t *)commandBuffer, strlen(commandBuffer), 5000) != HAL_OK) {
+    printf("\r\n Error on transmit");
+  }
+}
+
+char receiveWifi(){
+  char* commandReceiver[];
+  return 
+
+}
+
+

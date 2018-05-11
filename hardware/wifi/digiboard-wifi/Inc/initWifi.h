@@ -5,4 +5,5 @@ void receiveWifi();
 void ackWifi();
 void turnOffEcho();
 void sendCommands();
+void setupSocket();
 #endif

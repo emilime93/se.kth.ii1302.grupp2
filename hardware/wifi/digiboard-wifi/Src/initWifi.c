@@ -12,7 +12,7 @@
 #include "string.h"
 #include "math.h"
 #include "displayMethods.h"
-static char commandReceiver[40];
+static char commandReceiver[100];
 static uint8_t confirmed = 0;
 
 
@@ -24,7 +24,7 @@ void transmitWifi(char* command){
 
 void receiveWifi(){
   uint8_t i = 0;
-  while(i < 40){
+  while(i < 100){
     if(HAL_UART_Receive(&huart1, (uint8_t *)&commandReceiver[i],1,5000)!=HAL_OK){
       printf("\r\nerror receive");
     }
@@ -40,6 +40,9 @@ void ackWifi(){
   for(int i = 0; i < 40; i++){
     if(commandReceiver[i] == 'A'){
       if(commandReceiver[i+2] == '-'){
+        for(int j = 0; j < 100; j++){
+          commandReceiver[j] = '\0';
+        }
         confirmed = 1;
       }
     }
@@ -72,7 +75,6 @@ void sendCommands(){
   sprintf(commandBuffer[8], "AT+S.SCFG=wifi_mode,3\r\n");
   sprintf(commandBuffer[9], "AT+S.WCFG\r\n");
   sprintf(commandBuffer[10], "AT+S.WIFI=1\r\n");
-//  sprintf(commandBuffer[11],"AT+S.SOCKDON=1337,t\r\n");
   for(int i = 0; i < 11; i++){
     transmitWifi(commandBuffer[i]);
     receiveWifi();
@@ -87,4 +89,8 @@ void sendCommands(){
   }
 }
 
-
+void setupSocket(){
+  static uint8_t commandSocket[]="AT+S.SOCKDON=1337,t\r\n";
+  transmitWifi(commandSocket);
+  printf("\r\ntransmit socket done");
+}

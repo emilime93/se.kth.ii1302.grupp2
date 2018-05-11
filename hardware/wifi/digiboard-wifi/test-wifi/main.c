@@ -110,9 +110,9 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  turnOffEcho();
   sendCommands();
-
+  HAL_Delay(10000);
+  setupSocket();
   
   
   while (1)

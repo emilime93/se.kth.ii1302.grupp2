@@ -9,10 +9,19 @@ class MessageController {
 	*/
 	function save_message($messageDTO) {
 		$max_length = 40;
+		$max_ttl = 99999;
 		if(strlen($messageDTO->get_text()) < 1 || strlen($messageDTO->get_text()) > $max_length) {
 			$_SESSION['save_message_length_error'] = "The message should be at least 1 character and at most " . $max_length . " characters long.";
 			header("Location: /index.php");
 			die();
+		}
+		if (!ctype_digit((String) $messageDTO->get_time_to_live()) || $messageDTO->get_time_to_live() < 0) {
+			$_SESSION['save_message_ttl_error'] = "The time to live field should only contain positive integers.";
+			header("Location: /index.php");
+			die();
+		}
+		if ($messageDTO->get_time_to_live() > $max_ttl) {
+			$messageDTO->set_time_to_live($max_ttl);
 		}
 
 		require_once($_SERVER['DOCUMENT_ROOT'].'/model/user_model.php');
@@ -109,11 +118,21 @@ class MessageController {
 	*/
 	function send_message($messageDTO) {
 		$max_length = 40;
+		$max_ttl = 99999;
 		if(strlen($messageDTO->get_text()) < 1 || strlen($messageDTO->get_text()) > $max_length) {
 			$_SESSION['send_message_length_error'] = "The message should be at least 1 character and at most " . $max_length . " characters long.";
 			header("Location: /index.php");
 			die();
 		}
+		if (!ctype_digit((String) $messageDTO->get_time_to_live()) || $messageDTO->get_time_to_live() < 0) {
+			$_SESSION['send_message_ttl_error'] = "The time to live field should only contain positive integers.";
+			header("Location: /index.php");
+			die();
+		}
+		if ($messageDTO->get_time_to_live() > $max_ttl) {
+			$messageDTO->set_time_to_live($max_ttl);
+		}
+		
 		require_once($_SERVER['DOCUMENT_ROOT'].'/integration/display.php');
 		$display = new Display();
 

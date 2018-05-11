@@ -18,6 +18,13 @@ switch($_POST['submit']) {
 		$fname = $_POST['fname'];
 		$lname = $_POST['lname'];
 		$email = $_POST['email'];
+		
+		// Checks if password is empty
+		if (strlen($_POST['password']) <= 0) {
+			$_SESSION['register_success'] = false;
+			header("Location: /index.php");
+		}
+		
 		require_once($_SERVER['DOCUMENT_ROOT'].'/modelDTO/registry_DTO.php');
 		$RegistryDTO = new RegistryDTO($username, $password, $signup_code, $fname, $lname, $email);
 		
@@ -28,6 +35,7 @@ switch($_POST['submit']) {
 	case "login":
 		$username = $_POST['username'];
 		$password = $_POST['password'];
+		
 		require_once($_SERVER['DOCUMENT_ROOT'].'/modelDTO/user_DTO.php');
 		$UserDTO = new UserDTO($username, $password);
 		
@@ -45,17 +53,13 @@ switch($_POST['submit']) {
 	* MESSAGE HANDLING	*
 	*********************/
 	case "save":
-		$max_ttl = 99999;
 		$text = $_POST['text'];
-		if (isset($_POST['time-to-live'])) {
-			if ($_POST['time-to-live'] > $max_ttl) {
-				$time_to_live = $max_ttl;
-			} else  {
-				$time_to_live = $_POST['time-to-live'];
-			}
-		} else {
+		if ($_POST['time-to-live'] == "") {
 			$time_to_live = 0;
+		} else {
+			$time_to_live = $_POST['time-to-live'];
 		}
+
 		require_once($_SERVER['DOCUMENT_ROOT'].'/modelDTO/message_DTO.php');
 		$MessageDTO = new MessageDTO($text, $time_to_live);
 		
@@ -87,17 +91,13 @@ switch($_POST['submit']) {
 		header("Location: /index.php");
 	break;
 	case "send":
-		$max_ttl = 99999;
 		$text = $_POST['text'];
-		if (isset($_POST['time-to-live'])) {
-			if ($_POST['time-to-live'] > $max_ttl) {
-				$time_to_live = $max_ttl;
-			} else  {
-				$time_to_live = $_POST['time-to-live'];
-			}
-		} else {
+		if ($_POST['time-to-live'] == "") {
 			$time_to_live = 0;
+		} else {
+			$time_to_live = $_POST['time-to-live'];
 		}
+
 		require_once($_SERVER['DOCUMENT_ROOT'].'/modelDTO/message_DTO.php');
 		$MessageDTO = new MessageDTO($text, $time_to_live);
 		

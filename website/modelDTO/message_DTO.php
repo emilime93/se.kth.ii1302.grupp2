@@ -21,4 +21,7 @@ class MessageDTO {
 	function get_time_to_live() {
 		return $this->time_to_live;
 	}
+	function set_time_to_live($time_to_live) {
+		$this->time_to_live = $time_to_live;
+	}
 }

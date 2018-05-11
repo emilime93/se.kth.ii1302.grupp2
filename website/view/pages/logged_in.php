@@ -26,6 +26,10 @@
                 echo '<p class="error">'.$_SESSION['send_message_length_error'].'</p>';
                 unset($_SESSION['send_message_length_error']);
             }
+			if(isset($_SESSION['send_message_ttl_error'])) {
+                echo '<p class="error">'.$_SESSION['send_message_ttl_error'].'</p>';
+                unset($_SESSION['send_message_ttl_error']);
+            }
             if(isset($_SESSION['send_message_success'])) {
                 if($_SESSION['send_message_success']) {
                     echo '<p class="success">Message successfully sent!</p>';
@@ -66,6 +70,10 @@
             if(isset($_SESSION['save_message_length_error'])) {
                 echo '<p class="error">'.$_SESSION['save_message_length_error'].'</p>';
                 unset($_SESSION['save_message_length_error']);
+            }
+			if(isset($_SESSION['save_message_ttl_error'])) {
+                echo '<p class="error">'.$_SESSION['save_message_ttl_error'].'</p>';
+                unset($_SESSION['save_message_ttl_error']);
             }
             if(isset($_SESSION['save_message_success'])) {
                 if($_SESSION['save_message_success']) {

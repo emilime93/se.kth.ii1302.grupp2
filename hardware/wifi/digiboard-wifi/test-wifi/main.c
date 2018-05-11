@@ -50,6 +50,7 @@
 #include "stdio.h"
 #include "math.h"
 #include "initWifi.h"
+#include "readWifi.h"
 
 /* USER CODE END Includes */
 
@@ -111,12 +112,16 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   sendCommands();
-  HAL_Delay(10000);
+  HAL_Delay(5000);
   setupSocket();
-  
+  clearBuffer();
   
   while (1)
   { 
+//    waitSocketClient();
+//    readFromSocket();
+    receiveWifi();
+    
     
   /* USER CODE END WHILE */
 

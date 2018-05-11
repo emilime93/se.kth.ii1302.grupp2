@@ -6,4 +6,6 @@ void ackWifi();
 void turnOffEcho();
 void sendCommands();
 void setupSocket();
+char sendReceiverBuffer();
+void clearBuffer();
 #endif

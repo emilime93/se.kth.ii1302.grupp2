@@ -39,6 +39,9 @@
 #include "stdio.h"
 #include "initWifi.h"
 #include "usart.h"
+#include "string.h"
+#include "math.h"
+#include "displayMethods.h"
 static char commandReceiver[40];
 
 
@@ -63,7 +66,13 @@ void receiveWifi(){
 }
 
 void ackWifi(){
-  
+  for(int i = 0; i < 40; i++){
+    if(commandReceiver[i] == 'A'){
+      if(commandReceiver[i+2] == '-'){
+        printf("Done analyze");
+      }
+    }
+  }
 }
 
 

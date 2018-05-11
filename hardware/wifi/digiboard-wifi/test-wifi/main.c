@@ -49,6 +49,7 @@
 #include "string.h"
 #include "stdio.h"
 #include "math.h"
+#include "initWifi.h"
 
 /* USER CODE END Includes */
 
@@ -118,6 +119,7 @@ int main(void)
 //  }
   transmitWifi(c1);
   receiveWifi();
+  ackWifi();
 
   
   

@@ -110,16 +110,8 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  static uint8_t c1[]="AT+S.SCFG=console_echo,0\r\n";
-  uint8_t i = 0;
-//  sprintf(c1,"AT+S.SCFG=console_echo,0\r\n");
-//  if (HAL_UART_Transmit(&huart1, (uint8_t *)c1, strlen(c1), 5000) != HAL_OK) {
-//    k=1;
-//    printf("\r\n I am trying to transmit this shit");
-//  }
-  transmitWifi(c1);
-  receiveWifi();
-  ackWifi();
+  turnOffEcho();
+  sendCommands();
 
   
   

@@ -3,4 +3,6 @@
 void transmitWifi(char* commandBuffer);
 void receiveWifi();
 void ackWifi();
+void turnOffEcho();
+void sendCommands();
 #endif

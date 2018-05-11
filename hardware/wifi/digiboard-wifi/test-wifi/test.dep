@@ -628,6 +628,10 @@
                     <file> 82</file>
                 </tool>
                 <tool>
+                    <name>ICCARM</name>
+                    <file> 52</file>
+                </tool>
+                <tool>
                     <name>__cstat</name>
                     <file> 32</file>
                 </tool>
@@ -635,7 +639,7 @@
             <inputs>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 40 80 35 68 38 112 171 137 87 7 153 48 162 74 92 24 36 151 76 28 152 72 128 91 70 1 168 170 140 57 159 42 39 83 60 158 84 34 114 33</file>
+                    <file> 70 40 159 87 60 80 152 42 38 68 112 128 168 140 57 39 171 48 162 92 76 28 72 91 1 170 24 83 158 36 151 74 35 137 7 153 84 34 114 33</file>
                 </tool>
                 <tool>
                     <name>ICCARM</name>
@@ -977,7 +981,7 @@
             <outputs>
                 <tool>
                     <name>ILINK</name>
-                    <file> 79 150</file>
+                    <file> 150 79</file>
                 </tool>
             </outputs>
         </file>

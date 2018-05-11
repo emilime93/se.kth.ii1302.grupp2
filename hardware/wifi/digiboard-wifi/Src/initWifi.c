@@ -39,6 +39,8 @@
 #include "stdio.h"
 #include "initWifi.h"
 #include "usart.h"
+static char commandReceiver[40];
+
 
 void transmitWifi(char* commandBuffer){
   if (HAL_UART_Transmit(&huart1, (uint8_t *)commandBuffer, strlen(commandBuffer), 5000) != HAL_OK) {
@@ -46,10 +48,22 @@ void transmitWifi(char* commandBuffer){
   }
 }
 
-char receiveWifi(){
-  char* commandReceiver[];
-  return 
+void receiveWifi(){
+  uint8_t i = 0;
+  while(i < 40){
+    if(HAL_UART_Receive(&huart1, (uint8_t *)&commandReceiver[i],1,5000)!=HAL_OK){
+       printf("error receive");
+    }
+    if(commandReceiver[i]== '\n'){
+      i=0;
+      break;
+    }
+    i++;
+  } 
+}
 
+void ackWifi(){
+  
 }
 
 

@@ -23,6 +23,7 @@ switch($_POST['submit']) {
 		if (strlen($_POST['password']) <= 0) {
 			$_SESSION['register_success'] = false;
 			header("Location: /index.php");
+			die();
 		}
 		
 		require_once($_SERVER['DOCUMENT_ROOT'].'/modelDTO/registry_DTO.php');

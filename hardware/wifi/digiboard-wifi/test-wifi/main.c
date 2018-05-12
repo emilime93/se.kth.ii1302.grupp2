@@ -122,9 +122,7 @@ int main(void)
   while (1)
   { 
     recWifi();
-    HAL_Delay(10);
-    clearBufferIT();
-    HAL_Delay(10);
+    
     /* USER CODE END WHILE */
     
     /* USER CODE BEGIN 3 */

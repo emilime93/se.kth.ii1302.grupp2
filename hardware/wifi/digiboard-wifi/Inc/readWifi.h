@@ -6,4 +6,5 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle);
 void clearBufferIT();
 void uartSET(uint8_t k);
 void recWifi();
+void reset();
 #endif

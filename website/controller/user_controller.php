@@ -7,6 +7,22 @@ class UserController {
 	* @param RegistryDTO	$registry_DTO information about the user that is to be registered
 	*/
 	function create_user($registry_DTO) {
+		$max_username = 30;
+		$max_name = 50;
+		$valid_username_chars = array('_', '-');
+		if (!ctype_alnum(str_replace($valid_username_chars, "", $registry_DTO->get_username()))
+			|| strlen($registry_DTO->get_username()) > $max_username || strlen($registry_DTO->get_username()) < 1) {
+			$_SESSION['register_username_error'] = 'The username can only contain letters, numbers, "_" and "-". Max length for the username is ' . $max_username . ' characters.';
+			header("Location: /index.php");
+			die();
+		}
+		if (!ctype_alpha($registry_DTO->get_fname() . $registry_DTO->get_lname()) && ($registry_DTO->get_fname() . $registry_DTO->get_lname()) != ""
+			|| strlen($registry_DTO->get_fname()) > $max_name || strlen($registry_DTO->get_lname()) > $max_name) {
+			$_SESSION['register_name_error'] = 'The firstname and lastname can only contain letters and the max length for the name fields are ' . $max_name . ' characters.';
+			header("Location: /index.php");
+			die();
+		}	
+		
 		require_once($_SERVER['DOCUMENT_ROOT'].'/integration/user_db.php');
 		$UserDB = new UserDB();
 		

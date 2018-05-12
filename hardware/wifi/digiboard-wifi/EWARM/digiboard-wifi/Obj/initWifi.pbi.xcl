@@ -1,4 +1,4 @@
-"C:\Users\Elias\Desktop\II1302\se.kth.ii1302.grupp2\hardware\wifi\digiboard-wifi\Src\usart.c"
+"C:\Users\Elias\Desktop\II1302\se.kth.ii1302.grupp2\hardware\wifi\digiboard-wifi\Src\initWifi.c"
 -std=c11
 -ferror-limit=0
 -I

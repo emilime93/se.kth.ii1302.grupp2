@@ -49,6 +49,8 @@
 #include "string.h"
 #include "stdio.h"
 #include "math.h"
+#include "readWifi.h"
+#include "initWifi.h"
 
 /* USER CODE END Includes */
 
@@ -56,7 +58,6 @@
 
 /* USER CODE BEGIN PV */
 
-ITStatus UartReady = RESET;
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE END PV */
@@ -109,23 +110,12 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  static uint8_t c1[]="AT+S.WIFI=0\r\n";
-  static uint8_t c2[40];
-//  sprintf(c1,"AT+S.SCFG=console_echo,0\r\n");
-  static uint8_t k = 0;
-  if (HAL_UART_Transmit(&huart1, (uint8_t *)c1, strlen(c1), 5000) != HAL_OK) {
-    k=1;
-    printf("\r\n I am trying to transmit this shit");
-  }
-
-  if(HAL_UART_Receive(&huart1, (uint8_t *)c2,40,5000)!=HAL_OK){
-    printf("error");
-  }
-  printf("done");  
   
   while (1)
   { 
-      
+      readUartIT();
+      printf("\r\n1");
+      clearBufferIT();
     
   /* USER CODE END WHILE */
 
@@ -147,9 +137,9 @@ void SystemClock_Config(void)
 
     /**Initializes the CPU, AHB and APB busses clocks 
     */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSICalibrationValue = 16;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
@@ -160,7 +150,7 @@ void SystemClock_Config(void)
     */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSE;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;

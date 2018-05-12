@@ -23,6 +23,14 @@
 					}
 					unset($_SESSION['register_success']);
 				}
+				if(isset($_SESSION['register_username_error'])) {
+					echo '<p class="error">'.$_SESSION['register_username_error'].'</p>';
+					unset($_SESSION['register_username_error']);
+				}
+				if(isset($_SESSION['register_name_error'])) {
+					echo '<p class="error">'.$_SESSION['register_name_error'].'</p>';
+					unset($_SESSION['register_name_error']);
+				}
 				?>
        </form>
 		</section>

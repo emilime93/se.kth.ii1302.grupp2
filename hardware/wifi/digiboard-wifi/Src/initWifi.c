@@ -15,12 +15,9 @@
 static char commandReceiver[70];
 static uint8_t confirmed = 0;
 
-char sendReceiverBuffer(){
-  return *commandReceiver;
-}
 
 void clearBuffer(){
-  for(int j = 0; j < 70; j++){
+  for(int j = 0; j < sizeof(commandReceiver); j++){
     commandReceiver[j] = '\0';
   }
 }
@@ -33,9 +30,9 @@ void transmitWifi(char* command){
 
 void receiveWifi(){
   uint8_t i = 0;
-  while(i < 70){
+  while(i < sizeof(commandReceiver)){
     if(HAL_UART_Receive(&huart1, (uint8_t *)&commandReceiver[i],1,5000)!=HAL_OK){
-      printf("\r\nerror receive");
+      printf("\r\nerror receive\r\n");
     }
     if(commandReceiver[i]== '\n'){
       break;

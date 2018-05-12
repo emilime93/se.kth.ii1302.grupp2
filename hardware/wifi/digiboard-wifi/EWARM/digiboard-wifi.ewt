@@ -1202,7 +1202,13 @@
                 <name>$PROJ_DIR$\..\Src\gpio.c</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\..\Src\initWifi.c</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\Src\main.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Src\readWifi.c</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\Src\spi.c</name>

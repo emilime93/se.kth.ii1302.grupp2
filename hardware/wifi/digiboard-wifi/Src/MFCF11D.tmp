@@ -11,7 +11,7 @@
 #include "stdio.h"
 #include "string.h"
 
-#define BufferSize 33
+#define BufferSize 40
 static char commandSocket[3][20];
 static uint8_t readUartBuffer[BufferSize];
 
@@ -20,6 +20,7 @@ void recWifi(){
     printf("\r\nerror receive\r\n");
   }
   while(huart1.RxState != HAL_UART_STATE_READY);
+  
 }
 
 void readFromSocket(){
@@ -33,16 +34,28 @@ void clearBufferIT(){
   }
 }
 void checkBuffer(){
-  //  for(int i = 0; i < BufferSize; i++){
-  //    if(readUartBuffer[i]=='\n'){
-  //      if(readUartBuffer[0] == '+'){
-  //        printf("true\r\n");
-  //        break;
-  //      }
-  //    }
-  //  }
-  if(strcmp(readUartBuffer,"+WIND:29:DHCP Reply:192.168.0.2\r\n") == 0){
-    printf("true\r\n");
+  for(int i = 0; i < BufferSize; i++){
+    if(readUartBuffer[i]=='\n'){
+      if(readUartBuffer[0] == '+'){
+        printf("true\r\n");
+        break;
+      }
+    }
   }
-  else{clearBufferIT();}
+  static uint8_t informationBuffer[100];
+  for(int i = 0; i < sizeof(informationBuffer); i++){
+    informationBuffer[i] = readUartBuffer[i];
+    if(informationBuffer[i] == '\n'){
+      break;
+    }
+  }
+  if(informationBuffer == "+WIND:29:DHCP Reply:192.168.0.2\r\n"){
+    printf("String correct\r\n");
+  }else{
+    for(int i = 0; i < 100; i++){
+      informationBuffer[i] = '\0';
+    }
+    clearBufferIT();
+  }
+  
 }

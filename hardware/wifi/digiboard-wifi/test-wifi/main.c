@@ -122,6 +122,8 @@ int main(void)
   while (1)
   { 
     recWifi();
+    printf("Done receiving\r\n");
+    clearBufferIT();
     
     /* USER CODE END WHILE */
     

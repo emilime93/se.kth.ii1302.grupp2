@@ -12,17 +12,16 @@
 #include "string.h"
 
 #define BufferSize 40
-ITStatus UartReady = RESET;
-UART_HandleTypeDef UartHandle;
 static char commandSocket[3][20];
 static uint8_t readUartBuffer[BufferSize];
+
+
 
 void recWifi(){
     if(HAL_UART_Receive_IT(&huart1, (uint8_t *)&readUartBuffer,BufferSize)!=HAL_OK){
       printf("\r\nerror receive\r\n");
     }
-    while(UartReady != SET);
-    UartReady = RESET;
+    while(huart1.RxState != HAL_UART_STATE_READY);
    
 }
 
@@ -36,16 +35,13 @@ void clearBufferIT(){
     readUartBuffer[j] = '\0';
   }
 }
-
-/**
-* @brief Rx Transfer completed callback
-* @param UartHandle: UART handle
-* @note This example shows a simple way to report end of IT Rx transfer, and
-* you can add your own implementation.
-* @retval None
-*/
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
-{
-/* Set transmission flag: trasfer complete*/
-  UartReady = SET;
+void checkBuffer(){
+  for(int i = 0; i < sizeof(readUartBuffer); i++){
+    if(readUartBuffer[i]=='+'){
+      printf("correct\r\n");
+      clearBufferIT();
+    }else
+      printf("not correct\r\n");
+  }
+  
 }

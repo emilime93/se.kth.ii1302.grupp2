@@ -118,7 +118,6 @@ int main(void)
   setupSocket();
 //  checkDHCP();
 //  readFromSocket();
-
   while (1)
   { 
     recWifi();

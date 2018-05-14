@@ -11,38 +11,44 @@
 #include "stdio.h"
 #include "string.h"
 
-#define BufferSize 33
-static char commandSocket[3][20];
+#define BufferSize 100
+static uint8_t commandSocket[] = "AT+S.SOCKDR=0,0,0\r\n";
 static uint8_t readUartBuffer[BufferSize];
+static uint8_t testBuffer[BufferSize];
+static uint8_t wind55[]="+WIND:55";
+
 
 void recWifi(){
-  if(HAL_UART_Receive_IT(&huart1, (uint8_t *)&readUartBuffer,BufferSize)!=HAL_OK){
-    printf("\r\nerror receive\r\n");
+  readUartBuffer[0] = '\0';
+  static uint8_t i = 0;
+  for( i = 0; i < BufferSize; i++){
+    
+    if(HAL_UART_Receive_IT(&huart1, (uint8_t *)&readUartBuffer[i], 1)!=HAL_OK){
+      printf("\r\nerror receive\r\n");
+    }
+    while(huart1.RxState != HAL_UART_STATE_READY);
+    if(readUartBuffer[0] == '\0'){
+      i = -1;
+      continue;
+    }
+    if(readUartBuffer[i] == '\n'){
+      memcpy(testBuffer,readUartBuffer,BufferSize);
+      printf("%s%s", readUartBuffer,"\r\n");
+      memset(readUartBuffer,'\0',BufferSize);
+      break;
+    }
   }
-  while(huart1.RxState != HAL_UART_STATE_READY);
 }
 
-void readFromSocket(){
-  sprintf(commandSocket[0], "AT+S.SOCKDR=0,0,0\r\n");
-  transmitWifi(commandSocket[0]);
+
+void checkPending(){
+  if(strncmp(testBuffer,wind55, strlen(wind55))==0){
+    printf("true pending");
+  }
 }
 
-void clearBufferIT(){
-  for(int i = 0; i < BufferSize; i++){
-    readUartBuffer[i] = '\0';
-  }
-}
-void checkBuffer(){
-  //  for(int i = 0; i < BufferSize; i++){
-  //    if(readUartBuffer[i]=='\n'){
-  //      if(readUartBuffer[0] == '+'){
-  //        printf("true\r\n");
-  //        break;
-  //      }
-  //    }
-  //  }
-  if(strcmp(readUartBuffer,"+WIND:29:DHCP Reply:192.168.0.2\r\n") == 0){
-    printf("true\r\n");
-  }
-  else{clearBufferIT();}
+
+void readData(){
+  transmitWifi(commandSocket);
+  recWifi();
 }

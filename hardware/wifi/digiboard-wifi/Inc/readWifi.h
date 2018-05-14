@@ -5,5 +5,7 @@ void readUartIT();
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle);
 void clearBufferIT();
 void recWifi();
-void checkBuffer();
+void checkPending();
+void traWifi(char* commandBuffer);
+void readData();
 #endif

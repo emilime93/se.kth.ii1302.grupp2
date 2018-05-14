@@ -16,15 +16,15 @@
         <ShowSource>1</ShowSource>
     </Trace1>
     <StLinkDriver>
+        <stlinkserialNo>43122242</stlinkserialNo>
+        <stlinkfoundProbes />
         <CStepIntDis>_ 0</CStepIntDis>
         <LeaveTargetRunning>_ 0</LeaveTargetRunning>
         <stlinkResetStyle>0</stlinkResetStyle>
         <stlinkResetStrategy>1</stlinkResetStrategy>
-        <stlinkserialNo>43122242</stlinkserialNo>
-        <stlinkfoundProbes />
     </StLinkDriver>
     <DebugChecksum>
-        <Checksum>1684755689</Checksum>
+        <Checksum>3323804406</Checksum>
     </DebugChecksum>
     <Exceptions>
         <StopOnUncaught>_ 0</StopOnUncaught>
@@ -34,8 +34,8 @@
         <Enabled>_ 0</Enabled>
     </CodeCoverage>
     <Disassembly>
-        <InstrCount>0</InstrCount>
         <MixedMode>1</MixedMode>
+        <InstrCount>0</InstrCount>
     </Disassembly>
     <CallStack>
         <ShowArgs>0</ShowArgs>
@@ -78,6 +78,7 @@
     </array_types>
     <watch_formats>
         <Fmt0>{W}42:c2	5	0</Fmt0>
+        <Fmt1>{W}42:i	3	0</Fmt1>
     </watch_formats>
     <Trace2>
         <Enabled>0</Enabled>
@@ -137,6 +138,10 @@
         <LogFile>_ ""</LogFile>
         <Category>_ 0</Category>
     </LogFile>
+    <TermIOLog>
+        <LoggingEnabled>_ 0</LoggingEnabled>
+        <LogFile>_ ""</LogFile>
+    </TermIOLog>
     <Aliases>
         <Count>0</Count>
         <SuppressDialog>0</SuppressDialog>
@@ -154,8 +159,4 @@
     <CallStackStripe>
         <ShowTiming>1</ShowTiming>
     </CallStackStripe>
-    <TermIOLog>
-        <LoggingEnabled>_ 0</LoggingEnabled>
-        <LogFile>_ ""</LogFile>
-    </TermIOLog>
 </settings>

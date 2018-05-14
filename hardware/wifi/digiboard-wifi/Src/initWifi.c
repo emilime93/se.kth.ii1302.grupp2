@@ -79,7 +79,7 @@ void sendCommands(){
   sprintf(commandBuffer[9], "AT+S.WCFG\r\n");
   sprintf(commandBuffer[10], "AT+S.WIFI=1\r\n");
   for(int i = 0; i < 11; i++){
-    HAL_Delay(50);
+    HAL_Delay(100);
     transmitWifi(commandBuffer[i]);
     receiveWifi();
     ackWifi();

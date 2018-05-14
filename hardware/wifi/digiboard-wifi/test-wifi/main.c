@@ -112,18 +112,17 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   turnOffEcho();
-  HAL_Delay(50);
+  HAL_Delay(1000);
   sendCommands();
   HAL_Delay(1000);
   setupSocket();
-  clearBuffer();
+//  checkDHCP();
+//  readFromSocket();
+
   while (1)
   { 
     recWifi();
-    checkBuffer();
-    HAL_Delay(50);
-    
-    
+    checkPending();
     /* USER CODE END WHILE */
     
     /* USER CODE BEGIN 3 */

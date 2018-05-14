@@ -1,7 +1,7 @@
 <?php
 class MessageHandler {
 
-    /*
+    /**
      * This returns a HTML string of all messages
 	 *
 	 * @return String html code containing the saved messages to be printed 

@@ -6,7 +6,7 @@ class UserModel {
 	private $lname;
 	private $email;
 	
-	/*
+	/**
 	* Contains a user
 	*
 	* @param String	$username the username of the person
@@ -20,25 +20,25 @@ class UserModel {
 		$this->lname = $lname;
 		$this->email = $email;
 	}
-	/*
+	/**
 	* @return String the username of the person
 	*/
 	function get_username() {
 		return $this->username;
 	}
-	/*
+	/**
 	* @return String the firstname of the person
 	*/
 	function get_fname() {
 		return $this->fname;
 	}
-	/*
+	/**
 	* @return String the lastname of the person
 	*/
 	function get_lname() {
 		return $this->lname;
 	}
-	/*
+	/**
 	* @return String the email of the person
 	*/
 	function get_email() {

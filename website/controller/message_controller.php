@@ -1,7 +1,7 @@
 <?php
 
 class MessageController {
-	/*
+	/**
 	* Saves a message in the database. Sets $_SESSION['save_message_success'] to either TRUE or FALSE
 	* to indicate the success of saving the message.
 	*
@@ -43,7 +43,7 @@ class MessageController {
 		header("Location: /index.php");
 	}
 
-	/*
+	/**
 	* Deletes a saved message from the database. Sets $_SESSION['erase_saved_message_success'] to either TRUE or FALSE
 	* to indicate the success of deleting the message.
 	*
@@ -65,7 +65,7 @@ class MessageController {
 		header("Location: /index.php");
 	}
 
-	/*
+	/**
 	* Send a message saved in the database to the display. Sets $_SESSION['send_saved_message_success'] to either TRUE or FALSE
 	* to indicate the success of sending the message.
 	*
@@ -95,7 +95,17 @@ class MessageController {
 		header("Location: /index.php");
 	}
 
-	/*
+	/**
+	 * This methods erases the message from the display and/or database.
+	 */
+	function erase_message() {
+		require_once($_SERVER['DOCUMENT_ROOT'].'/integration/display.php');
+		$display = new Display();
+		$display->erase_message();
+		header("Location: /index.php");
+	}
+
+	/**
 	* Returns the saved messaged from the database.
 	*
 	* @return MessageModel[]	 an array of the messages savsed in the database.
@@ -110,7 +120,7 @@ class MessageController {
 		return $msg_db->get_saved_messages($username);
 	}
 	
-	/*
+	/**
 	* Sends a message to the display. Sets $_SESSION['send_message_success'] to either TRUE or FALSE
 	* to indicate the success of sending the message.
 	*
@@ -152,7 +162,7 @@ class MessageController {
 		header("Location: /index.php");
 	}
 	
-	/*
+	/**
 	* Returns the message from the display(or display DB)
 	*
 	* @return MessageDTO	the message displayed.

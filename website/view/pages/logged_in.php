@@ -1,6 +1,6 @@
 <main>
     
-    <section id="banner">
+    <section class="clearfix" id="banner">
         <h2>Currently displayed Message</h2>
 		<?php
 			require_once($_SERVER['DOCUMENT_ROOT'].'/controller/message_controller.php');
@@ -12,6 +12,9 @@
 				echo "<p>Currently no message displayed!</p>";
 			}
 		?>
+        <form id="erase-message-form" action="util/post_handler.php" method="POST">
+			<button id="erase-button" type="submit" name="submit" value="erase">Erase Message</button>
+        </form>
     </section>
 
     <section>

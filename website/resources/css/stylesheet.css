@@ -145,6 +145,13 @@ section {
 	font-size: 1.2em;
 	font-weight: bold;
 }
+#erase-button {
+	background: #f00;
+	color: #e9bbbb;
+	border: none;
+	border-radius: 5px;
+	float: right;
+}
 
 h1 {
 	font-size: 24px;
@@ -194,6 +201,7 @@ h1 {
 	border: none;
 	border-radius: 5px;
 	float: right;
+	margin-right: 5px;
 }
 
 #save-message-textarea,

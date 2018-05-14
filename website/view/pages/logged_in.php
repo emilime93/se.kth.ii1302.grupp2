@@ -1,6 +1,6 @@
 <main>
     
-    <section id="banner">
+    <section class="clearfix" id="banner">
         <h2>Currently displayed Message</h2>
 		<?php
 			require_once($_SERVER['DOCUMENT_ROOT'].'/controller/message_controller.php');

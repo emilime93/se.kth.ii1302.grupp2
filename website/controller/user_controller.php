@@ -1,6 +1,6 @@
 <?php
 class UserController {
-	/*
+	/**
 	* Registers a user into the database. Sets $_SESSION['register_success'] to either TRUE or FALSE
 	* to indicate the success of registering the user.
 	*
@@ -34,7 +34,7 @@ class UserController {
 		header("Location: /index.php");
 	}
 	
-	/*
+	/**
 	* Used to login a user. Saves the user in $_SESSION['logged_in_user'] if successful or
 	* $_SESSION['login_failed'] to TRUE if the login failed.
 	*
@@ -52,7 +52,7 @@ class UserController {
 		header("Location: /index.php");
 	}
 
-	/*
+	/**
 	* Unsets the $_SESSION['logged_in_user'] to logout a user.
 	*/
 	function log_out() {

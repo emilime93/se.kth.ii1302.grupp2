@@ -85,12 +85,6 @@ switch($_POST['submit']) {
 
 		$MessageController->send_saved_message_by_id($id);
 	break;
-	case "clear-display":
-		require_once($_SERVER['DOCUMENT_ROOT'].'/integration/display.php');
-		$display = new Display();
-		$display->erase_message();
-		header("Location: /index.php");
-	break;
 	case "send":
 		$text = $_POST['text'];
 		if ($_POST['time-to-live'] == "") {
@@ -100,11 +94,16 @@ switch($_POST['submit']) {
 		}
 
 		require_once($_SERVER['DOCUMENT_ROOT'].'/modelDTO/message_DTO.php');
-		$MessageDTO = new MessageDTO($text, $time_to_live);
+		$messageDTO = new MessageDTO($text, $time_to_live);
 		
 		require_once($_SERVER['DOCUMENT_ROOT'].'/controller/message_controller.php');
-		$MessageController = new MessageController();
-		$MessageController->send_message($MessageDTO);
+		$messageController = new MessageController();
+		$messageController->send_message($messageDTO);
+	break;
+	case "erase":
+		require_once($_SERVER['DOCUMENT_ROOT'].'/controller/message_controller.php');
+		$messageController = new MessageController();
+		$messageController->erase_message();
 	break;
 	default:
 		header("Location: /index.php");

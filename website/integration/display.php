@@ -58,8 +58,8 @@ class Display {
 	 */
 	private function set_display_db($messageDTO, $username) {
 		$text = $messageDTO->get_text();
-		
         $this->connect();
+		$this->erase_message();
 		$prepare_stmt = $this->connection->prepare("INSERT INTO display (text, username, time_to_live) VALUES (?, ?, ?)");
 		$ttl = $messageDTO->get_time_to_live();
 		$prepare_stmt->bind_param('ssi', $text, $username, $ttl);
@@ -75,8 +75,10 @@ class Display {
 	 */
 	function erase_message() {
 		$this->connect();
-        $prepare_stmt = $this->connection->prepare("DELETE FROM display");
-        return $prepare_stmt->execute();
+		$prepare_stmt = $this->connection->prepare("DELETE FROM display");
+		$result = $prepare_stmt->execute();
+		$prepare_stmt->close();
+        return $result;
 	}
 	/*
 	function erase_message() {

@@ -10,42 +10,165 @@
 #include "math.h"
 #include "stdio.h"
 #include "string.h"
+#include "displayMethods.h"
+#include "readWifi.h"
 
-#define BufferSize 40
-ITStatus UartReady = RESET;
-UART_HandleTypeDef UartHandle;
-static char commandSocket[3][20];
+#define BufferSize 100
+//static uint8_t commandSocket[] = "AT+S.SOCKDR=";
+static char commandSocket[] = "AT+S.SOCKDR=0,0,0\r\n";
 static uint8_t readUartBuffer[BufferSize];
+static uint8_t testBuffer[BufferSize];
+static uint8_t wind55[]="+WIND:55";
+static uint8_t reading[]="AT-S.Reading";
+static uint8_t svar [BufferSize];
+
 
 void recWifi(){
-    if(HAL_UART_Receive_IT(&huart1, (uint8_t *)&readUartBuffer,BufferSize)!=HAL_OK){
+  readUartBuffer[0] = '\0';
+  static uint8_t i = 0;
+  for( i = 0; i < BufferSize; i++){
+    
+    if(HAL_UART_Receive_IT(&huart1, (uint8_t *)&readUartBuffer[i], 1)!=HAL_OK){
       printf("\r\nerror receive\r\n");
     }
-    while(UartReady != SET);
-    UartReady = RESET;
-   
-}
-
-void readFromSocket(){
-  sprintf(commandSocket[0], "AT+S.SOCKDR=0,0,0\r\n");
-  transmitWifi(commandSocket[0]);
-}
-
-void clearBufferIT(){
-  for(int j = 0; j < sizeof(readUartBuffer); j++){
-    readUartBuffer[j] = '\0';
+    while(huart1.RxState != HAL_UART_STATE_READY);
+    if(readUartBuffer[0] == '\0'){
+      i = -1;
+      continue;
+    }
+    if(readUartBuffer[i] == '\n'){
+      memcpy(testBuffer,readUartBuffer,BufferSize);
+      memset(readUartBuffer,'\0',BufferSize);
+      break;
+    }
   }
 }
 
-/**
-* @brief Rx Transfer completed callback
-* @param UartHandle: UART handle
-* @note This example shows a simple way to report end of IT Rx transfer, and
-* you can add your own implementation.
-* @retval None
-*/
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
-{
-/* Set transmission flag: trasfer complete*/
-  UartReady = SET;
+
+
+void checkPending(){
+  uint8_t flag = 0;
+  uint8_t server;
+  uint8_t client;
+  uint8_t dataByte[2];
+  uint8_t intByte;
+  uint8_t j = 0;
+  if(strncmp(testBuffer,wind55, strlen(wind55))==0){
+    printf("\r\ntrue pending\r\n");
+    for(uint8_t i = 22; i < sizeof(testBuffer); i++){
+      if(testBuffer[i] == '\n'){
+        flag = 0;
+        break;
+      }
+      if(testBuffer[i] ==':'){
+        flag++;
+        continue;
+      }
+      if(flag == 0){
+        server = testBuffer[i];
+        
+      }
+      if(flag == 1){
+        client = testBuffer[i];
+      }
+      if(flag == 2){
+        dataByte[j] = testBuffer[i];
+        j++;
+      }
+      if(flag == 3){
+        break;
+      }
+    }
+    intByte = atoi(dataByte);
+    readData(server,client,intByte);
+  }
+  
+}
+
+void readData(uint8_t server, uint8_t client, uint8_t byte){
+  sendDisplay(0,0,0x01);
+  //  char ser, cli, byt;
+  // // sprintf(ser,"%c",server);
+  // //sprintf(cli, "%c", client);
+  // // sprintf(byt, "%d", byte);
+  // ser = server;
+  // cli = client;
+  // byt = byte;
+  //  
+  //  strcat(commandSocket, (char*)&ser);
+  //  strcat(commandSocket, ",");
+  //  strcat(commandSocket, (char*)&cli);
+  //  strcat(commandSocket, ",");
+  //  strcat(commandSocket, (char*)&byt);
+  //  strcat(commandSocket, "\r\n");
+  //  printf(commandSocket);
+  transmitWifi(commandSocket);
+  recData();
+
+  static char socketClear[]="AT+S.SOCKDC=0,0\r\n";
+  traWifi(socketClear);
+  translateBuffer();
+  
+}
+
+void recData(){
+  readUartBuffer[0] = '\0';
+  static uint8_t i = 0;
+  static uint8_t flag = 0;
+  for( i = 0; i < BufferSize; i++){
+    if(HAL_UART_Receive_IT(&huart1, (uint8_t *)&readUartBuffer[i], 1)!=HAL_OK){
+      printf("\r\nerror receive\r\n");
+    }
+    while(huart1.RxState != HAL_UART_STATE_READY);
+    if(readUartBuffer[0] == '\0'){
+      i = -1;
+      continue;
+    }
+    if(readUartBuffer[i] == '\n'){
+      i = -1;
+      if(strncmp(readUartBuffer,reading,strlen(reading))==0){
+        flag = 1;
+        memset(readUartBuffer,'\0',BufferSize);
+        continue;
+      }
+      if(flag == 1){
+        memcpy(testBuffer,readUartBuffer,BufferSize);
+        memset(readUartBuffer,'\0',BufferSize);
+        break;
+      }
+    }
+  }
+}
+
+
+void translateBuffer(){
+  uint32_t len = strlen(testBuffer);
+//    clearDisplay();
+  
+  memcpy(svar,testBuffer,len-9);
+  for(int i = 0; i < strlen(svar); i++){
+    if(i == 10){
+      sendDisplay(0,0,0xA0);
+    }
+    if(i == 20){
+      sendDisplay(0,0,0xC0);
+    }
+    if(i == 30){
+      sendDisplay(0,0,0xE0);
+    }
+    sendDisplay(0,1,svar[i]);
+  }
+}
+
+void clearDisplay(){
+//  for(int i = 0; i < 40; i++){
+//    sendDisplay(0,1,' ');
+//  }
+}
+
+void traWifi(char* command){
+  if (HAL_UART_Transmit(&huart1, (uint8_t *)command, strlen(command), 5000) != HAL_OK) {
+    printf("\r\n Error on transmit");
+  }
+  
 }

@@ -111,18 +111,17 @@ int main(void)
   
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  char c1 []="AT+S.WIFI=1\r\n";
-  
-  //  turnOffEcho();
-  //  sendCommands();
-  //  HAL_Delay(5000);
-  //  setupSocket();
-  //  clearBuffer();
-  //  transmitWifi(c1);
+  turnOffEcho();
+  HAL_Delay(1000);
+  sendCommands();
+  HAL_Delay(1000);
+  setupSocket();
+//  checkDHCP();
+//  readFromSocket();
   while (1)
   { 
     recWifi();
-    
+    checkPending();
     /* USER CODE END WHILE */
     
     /* USER CODE BEGIN 3 */

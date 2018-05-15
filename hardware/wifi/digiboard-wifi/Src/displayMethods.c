@@ -37,8 +37,15 @@ void displayInit(void){
   sendDisplay(0,0,0x56);
   sendDisplay(0,0,0x7A);
   sendDisplay(0,0,0x38);
-  sendDisplay(0,0,0x0F);
-  sendDisplay(0,0,0x01);
+  sendDisplay(0,0,0x0C);
+  
+  
+    sendDisplay(0,0,0x3A);
+    sendDisplay(0,0,0x72);
+    sendDisplay(0,1,0x04);
+    sendDisplay(0,0,0x38);
+    
+    sendDisplay(0,0,0x01);
 }
 
 /** 

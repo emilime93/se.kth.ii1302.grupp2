@@ -55,7 +55,6 @@
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
-
 /* USER CODE BEGIN PV */
 
 
@@ -105,14 +104,18 @@ int main(void)
   
   /* USER CODE BEGIN 2 */
   displayInit();
+  
   /* Wait for the end of the transfer*/    
   
   /* USER CODE END 2 */
   
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  
+  
   turnOffEcho();
   HAL_Delay(1000);
+
   sendCommands();
   HAL_Delay(1000);
   setupSocket();
@@ -120,6 +123,7 @@ int main(void)
 //  readFromSocket();
   while (1)
   { 
+     
     recWifi();
     checkPending();
     /* USER CODE END WHILE */

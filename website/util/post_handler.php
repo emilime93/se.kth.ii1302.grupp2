@@ -1,6 +1,11 @@
 <?php
 session_start();
 
+/**
+ * This handles all post requests from the user. It creates necesary DTOs and calls the propper controller method.
+ * If the post request was faulty, it redirects the user to index.php.
+ */
+
 switch($_POST['submit']) {
 	
 	/********************
@@ -13,6 +18,14 @@ switch($_POST['submit']) {
 		$fname = $_POST['fname'];
 		$lname = $_POST['lname'];
 		$email = $_POST['email'];
+		
+		// Checks if password is empty
+		if (strlen($_POST['password']) <= 0) {
+			$_SESSION['register_success'] = false;
+			header("Location: /index.php");
+			die();
+		}
+		
 		require_once($_SERVER['DOCUMENT_ROOT'].'/modelDTO/registry_DTO.php');
 		$RegistryDTO = new RegistryDTO($username, $password, $signup_code, $fname, $lname, $email);
 		
@@ -23,6 +36,7 @@ switch($_POST['submit']) {
 	case "login":
 		$username = $_POST['username'];
 		$password = $_POST['password'];
+		
 		require_once($_SERVER['DOCUMENT_ROOT'].'/modelDTO/user_DTO.php');
 		$UserDTO = new UserDTO($username, $password);
 		
@@ -41,11 +55,12 @@ switch($_POST['submit']) {
 	*********************/
 	case "save":
 		$text = $_POST['text'];
-		if (isset($_POST['time-to-live'])) {
-			$time_to_live = $_POST['time-to-live'];
-		} else {
+		if ($_POST['time-to-live'] == "") {
 			$time_to_live = 0;
+		} else {
+			$time_to_live = $_POST['time-to-live'];
 		}
+
 		require_once($_SERVER['DOCUMENT_ROOT'].'/modelDTO/message_DTO.php');
 		$MessageDTO = new MessageDTO($text, $time_to_live);
 		
@@ -57,9 +72,6 @@ switch($_POST['submit']) {
 		$id = $_POST['comment-id'];
 		require_once($_SERVER['DOCUMENT_ROOT'].'/model/user_model.php');
 		$username = unserialize($_SESSION['logged_in_user']);
-		
-		require_once($_SERVER['DOCUMENT_ROOT'].'/modelDTO/message_DTO.php');
-		$MessageDTO = new MessageDTO($text, $time_to_live);
 		
 		require_once($_SERVER['DOCUMENT_ROOT'].'/controller/message_controller.php');
 		$MessageController = new MessageController();
@@ -75,17 +87,23 @@ switch($_POST['submit']) {
 	break;
 	case "send":
 		$text = $_POST['text'];
-		if (isset($_POST['time-to-live'])) {
-			$time_to_live = $_POST['time-to-live'];
-		} else {
+		if ($_POST['time-to-live'] == "") {
 			$time_to_live = 0;
+		} else {
+			$time_to_live = $_POST['time-to-live'];
 		}
+
 		require_once($_SERVER['DOCUMENT_ROOT'].'/modelDTO/message_DTO.php');
-		$MessageDTO = new MessageDTO($text, $time_to_live);
+		$messageDTO = new MessageDTO($text, $time_to_live);
 		
 		require_once($_SERVER['DOCUMENT_ROOT'].'/controller/message_controller.php');
-		$MessageController = new MessageController();
-		$MessageController->send_message($MessageDTO);
+		$messageController = new MessageController();
+		$messageController->send_message($messageDTO);
+	break;
+	case "erase":
+		require_once($_SERVER['DOCUMENT_ROOT'].'/controller/message_controller.php');
+		$messageController = new MessageController();
+		$messageController->erase_message();
 	break;
 	default:
 		header("Location: /index.php");

@@ -3,6 +3,14 @@
 require_once('user_DTO.php');
 
 class RegistryDTO extends UserDTO {
+	/**
+	 * Registry Data Transfer Object.
+	 * Contains username and password from User_DTO, as well as:
+	 * signup code
+	 * first name
+	 * last name
+	 * email
+	 */
 	private $signup_code;
 	private $fname;
 	private $lname;
@@ -15,6 +23,9 @@ class RegistryDTO extends UserDTO {
 		$this->fname = $fname;
 		$this->lname = $lname;
 		$this->email = $email;
+	}
+	function get_username() {
+		return $this->username;
 	}
 	function get_password() {
 		return $this->password;

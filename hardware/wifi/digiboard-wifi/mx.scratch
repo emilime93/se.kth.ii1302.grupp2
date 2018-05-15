@@ -34,7 +34,7 @@
     <usedDebug>true</usedDebug>
     	<debugprobe></debugprobe>
     <optimization></optimization>
-    <icfloc>1</icfloc>
+    <icfloc>0</icfloc>
     <Adefines>
         <define></define>
     </Adefines>   
@@ -77,10 +77,22 @@
 		   <group>
 		 		<name>STM32F3xx_HAL_Driver</name>
 						<file>
+							<name>../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi.c</name>
+						</file>
+						<file>
+							<name>../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_spi_ex.c</name>
+						</file>
+						<file>
 							<name>../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.c</name>
 						</file>
 						<file>
 							<name>../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c</name>
+						</file>
+						<file>
+							<name>../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart.c</name>
+						</file>
+						<file>
+							<name>../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_uart_ex.c</name>
 						</file>
 						<file>
 							<name>../Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal.c</name>
@@ -132,6 +144,18 @@
 	      <name>User</name>  
                                 <file>
                                  <name>..\Src\main.c</name>
+                                </file>
+
+                                <file>
+                                 <name>..\Src\gpio.c</name>
+                                </file>
+
+                                <file>
+                                 <name>..\Src\spi.c</name>
+                                </file>
+
+                                <file>
+                                 <name>..\Src\usart.c</name>
                                 </file>
 
                                 <file>

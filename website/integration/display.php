@@ -44,7 +44,7 @@ class Display {
 	}
 	
 	private function write_to_display_format($messageDTO) {
-		$text = $messageDTO->get_text();
+		$text = iconv("UTF-8", "ISO-8859-1", $messageDTO->get_text());
 		$time_to_live = $messageDTO->get_time_to_live();
 		
 		$message = "w" . str_pad(strval($time_to_live), 5, "0", STR_PAD_LEFT) . $text;
@@ -74,14 +74,14 @@ class Display {
 	 * @return boolean TRUE if the deletion went through and FALSE if it failed
 	 */
 	function erase_message() {
+		$this->erase_message_display();
 		$this->connect();
 		$prepare_stmt = $this->connection->prepare("DELETE FROM display");
 		$result = $prepare_stmt->execute();
 		$prepare_stmt->close();
         return $result;
 	}
-	/*
-	function erase_message() {
+	function erase_message_display() {
 		$fp = fsockopen ($this->ip, $this->port, $errno, $errstr, 3);
 		if (!$fp) {
 			return false;
@@ -91,7 +91,6 @@ class Display {
 			return true;
 		}
 	}
-	*/
 	
 	/**
 	 * Gets the latest message from the database (from the display in the future).
